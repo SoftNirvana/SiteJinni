@@ -1,0 +1,6 @@
+Google Map Embed Keyy - AIzaSyDvp8iqxZqSa_9YrjAcYlP5CvYvwNBomes
+Web Service Key - AIzaSyCLsIhJwU8sF3G7cDDJN70NyQ6z5R4hKxU 
+Google Map Javascript Key - AIzaSyCYKHARqf-KwLQ5pJG6xVHHa_E2dt9wNJA
+
+
+<IFRAME width="100%" height="400" src="https://maps.google.com/maps/embed/v1/place?key=AIzaSyDvp8iqxZqSa_9YrjAcYlP5CvYvwNBomes&amp;q=<?php echo $pageDesign->allParts['Location']->LocationName .','.$pageDesign->allParts['Location']->LocationDesc ?>&amp;center=<?php echo $pageDesign->allParts['Location']->LocationLat .','.$pageDesign->allParts['Location']->LocationLng ?>&amp;zoom=13" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></IFRAME>

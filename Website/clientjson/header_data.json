@@ -1,0 +1,26 @@
+{
+  "allParts": {
+    "Header": {},
+    "MainImages": {},
+    "Amenities": {
+      "Amenities": [],
+      "PartName": [ ]
+    },
+    "Documents": {
+      "Documents": [],
+      "PartName": [ ]
+    },
+    "Location": {},
+    "About": {},
+    "Members": {
+      "Members": [],
+      "PartName": [ ]
+    },
+    "CompanyLocation": {},
+    "Projects": {
+      "Projects": [],
+      "PartName": [ ]
+    }
+  },
+  "PartName": "FullPage"
+}
