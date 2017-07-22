@@ -1,16 +1,16 @@
 <?php
 
-    include '/Classes/DataAccess.php';
-    include '/Classes/Entities/EntityBase.php';
-    include '/Classes/Entities/User.php';
-    include '/Classes/Entities/Client.php';
-    include '/Classes/Entities/Service.php';
-    include '/Classes/Entities/ServiceType.php';
-    include '/Classes/Entities/Cart.php';
-    include '/Classes/Entities/CartItem.php';
-    include '/Classes/Entities/BillItem.php';
-    include '/Classes/PageDesignData.php';
-    include '/Classes/FunctionClasses/CartFunctionsClass.php';
+    include './Classes/DataAccess.php';
+    include './Classes/Entities/EntityBase.php';
+    include './Classes/Entities/User.php';
+    include './Classes/Entities/Client.php';
+    include './Classes/Entities/Service.php';
+    include './Classes/Entities/ServiceType.php';
+    include './Classes/Entities/Cart.php';
+    include './Classes/Entities/CartItem.php';
+    include './Classes/Entities/BillItem.php';
+    include './Classes/PageDesignData.php';
+    include './Classes/FunctionClasses/CartFunctionsClass.php';
 
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 ?>
@@ -71,7 +71,7 @@ and open the template in the editor.
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <?php 
-                include("/htmlassets/sitejinniNavBar.php");
+                include("htmlassets/sitejinniNavBar.php");
             ?>
             <!-- /.navbar-collapse -->
         </div>

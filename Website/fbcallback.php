@@ -4,6 +4,7 @@ session_start();
 require 'vendor/facebook/graph-sdk/src/Facebook/autoload.php';
 include './Classes/Entities/EntityBase.php';
 include './Classes/Entities/User.php';
+include './Classes/DataAccess.php';
 
 
 use Facebook\FacebookSession;
@@ -30,14 +31,27 @@ $fb = new Facebook\Facebook([
 $helper = $fb->getRedirectLoginHelper();
 
 try {
-  $accessToken = $helper->getAccessToken();
-  $response = $fb->get("/me?fields=id,name,email,location", $accessToken);
-  $gobject = $response->getGraphUser();
-  $user = new User($gobject->getId(), "FBLOGIN", $gobject->getEmail(), $gobject->getFirstName(), 
-                   $gobject->getLastName(), $gobject->getLocation()->getField("name"), "", "", 
-                   "", "", "", "", "", "");
-  
-  var_dump($user);
+    $accessToken = $helper->getAccessToken();
+    $response = $fb->get("/me?fields=id,name,email,location", $accessToken);
+    $gobject = $response->getGraphUser();
+    $fullname = $gobject->getName();
+    $namearr = str_getcsv($fullname, " ");
+    $user = new User($gobject->getEmail(), "FBLOGIN", $gobject->getEmail(), $namearr[0], 
+                     $namearr[1], $gobject->getLocation()->getField("name"), "", "", 
+                     "", "", "", "", "", "");
+
+    $exuser = User::GetUserbyID($user->userid);
+    if($exuser == NULL)
+        $user->AddEntity ();
+
+    $_SESSION["user"] = $user;
+    if(isset($_SESSION["destpage"]) && $_SESSION["destpage"] != NULL) {
+        $destpage = $_SESSION["destpage"];
+        unset($_SESSION["destpage"]);
+        die('<script type="text/javascript">window.location.href="http://' . $destpage . '";</script>');
+    } else {
+        die('<script type="text/javascript">window.location.href="userPortfolioPage.php";</script>');
+    }
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();

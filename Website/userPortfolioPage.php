@@ -271,7 +271,7 @@ and open the template in the editor.
         <div class="container topnav">
             <!-- Brand and toggle get grouped for better mobile display -->
             <?php 
-                include("/htmlassets/sitejinniNavBar.php");
+                include("htmlassets/sitejinniNavBar.php");
             ?>
             <!-- /.navbar-collapse -->
         </div>

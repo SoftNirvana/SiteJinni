@@ -1,5 +1,47 @@
 <?php
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    require 'vendor/facebook/graph-sdk/src/Facebook/autoload.php';
+
+
+    use Facebook\FacebookSession;
+    use Facebook\FacebookRedirectLoginHelper;
+    use Facebook\FacebookRequest;
+    use Facebook\FacebookResponse;
+    use Facebook\FacebookSDKException;
+    use Facebook\FacebookRequestException;
+    use Facebook\FacebookAuthorizationException;
+    use Facebook\GraphObject;
+    use Facebook\GraphLocation;
+    use Facebook\GraphUser;
+    use Facebook\GraphSessionInfo;
+    use Facebook\Entities\AccessToken;
+    use Facebook\HttpClients\FacebookCurlHttpClient;
+    use Facebook\HttpClients\FacebookHttpable;
+
+
+    $fb = new Facebook\Facebook([
+      'app_id' => '1504323456292270',
+      'app_secret' => '946d6447c4f44aeecc5ee101e0ac146b',
+      'default_graph_version' => 'v2.9',
+      'persistent_data_handler'=>'session'
+      ]);
+
+    try {
+        // Get the \Facebook\GraphNodes\GraphUser object for the current user.
+        // If you provided a 'default_access_token', the '{access-token}' is optional.
+        $helper = $fb->getRedirectLoginHelper();
+        $_SESSION['FBRLH_state']=$_GET['state'];
+        $permissions = ['email','user_location']; // Optional permissions
+        $loginUrl = $helper->getLoginUrl('https://sitejinni.com/fbcallback.php', $permissions);
+    } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+      // When Graph returns an error
+      echo 'Graph returned an error: ' . $e->getMessage();
+      exit;
+    } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+      // When validation fails or other local issues
+      echo 'Facebook SDK returned an error: ' . $e->getMessage();
+      exit;
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -201,7 +243,7 @@
                                 </p>
                                 <h1></h1>
                                 <div class="text-center">
-                                    <a href="signUpPage.php" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Sign in with FB</span></a> 
+                                    <a href="<?php echo htmlspecialchars($loginUrl); ?>" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Sign in with FB</span></a> 
                                     <span class="network-name" style="margin: 5px"> OR </span>
                                     <a href="#toregister" class="btn btn-default btn-lg to_register">Register Now</a>
                                 </div>

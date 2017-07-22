@@ -20,10 +20,18 @@ include '../Entities/CartItem.php';
 
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
-if(isset($_POST["cartadd"])) {
-    //var_dump($_POST);
-    $servtypeid = $_POST["cartadd"];
-    $service = new Service("", $servtypeid, "", "", "", "", "", "", "", "", "", "", "");
-    CartFunctionsClass::AddCartItem($_SESSION["user"], $_SESSION["client"], $service, "OT");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    var_dump($_POST);
+    if(isset($_POST["cartadd"])) {
+        try {
+            $servtypeid = $_POST["cartadd"];
+            $service = new Service("", $servtypeid, "", "", "", "", "", "", "", "", "", "", "");
+            CartFunctionsClass::AddCartItem($_SESSION["user"], $_SESSION["client"], $service, "OT");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
 }
+
+
 
