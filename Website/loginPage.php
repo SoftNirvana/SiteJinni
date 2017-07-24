@@ -30,7 +30,8 @@
         // Get the \Facebook\GraphNodes\GraphUser object for the current user.
         // If you provided a 'default_access_token', the '{access-token}' is optional.
         $helper = $fb->getRedirectLoginHelper();
-        $_SESSION['FBRLH_state']=$_GET['state'];
+        if(isset($_GET['state']))
+            $_SESSION['FBRLH_state']=$_GET['state'];
         $permissions = ['email','user_location']; // Optional permissions
         $loginUrl = $helper->getLoginUrl('https://sitejinni.com/fbcallback.php', $permissions);
     } catch(\Facebook\Exceptions\FacebookResponseException $e) {
