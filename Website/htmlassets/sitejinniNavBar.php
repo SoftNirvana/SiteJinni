@@ -31,7 +31,7 @@
     
     if(isset($_SESSION["cart"]))
         $cart = $_SESSION["cart"];
-    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
     //$client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     
 ?>
