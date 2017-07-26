@@ -175,6 +175,7 @@ and open the template in the editor.
                             of website development or code writing is not required. Get a website for free. </p>
                         <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
                         <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="microsite/selection.php">Go to page ...</a></span></p> 
                     </div>
                 </div>
             </div>
@@ -196,6 +197,7 @@ and open the template in the editor.
                             of website development or code writing is not required. Get a website for free. </p>
                         <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
                         <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="domain/selection.php">Go to page ...</a></span></p> 
                     </div>
                 </div>
             </div>
@@ -217,6 +219,7 @@ and open the template in the editor.
                             of website development or code writing is not required. Get a website for free. </p>
                         <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
                         <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="digimart/selection.php">Go to page ...</a></span></p> 
                     </div>
                 </div>
             </div>
@@ -238,6 +241,7 @@ and open the template in the editor.
                             of website development or code writing is not required. Get a website for free. </p>
                         <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
                         <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="webdesign/selection.php">Go to page ...</a></span></p> 
                     </div>
                 </div>
             </div>
