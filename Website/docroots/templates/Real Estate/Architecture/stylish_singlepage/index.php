@@ -1,7 +1,12 @@
 <?php
-
+  
+    $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
+    $spath = $_SERVER["REQUEST_URI"];
     
+    if (strpos($path, 'userdocroots') != false || strpos($spath, 'userdocroots') != false ) {
+      $IsOpenFromSite=true;
+    }    
     $locpath = str_replace(stristr($path, '/docroots'), '', $path) ;
     
     include $locpath . '/Classes/DataAccess.php';
@@ -9,24 +14,29 @@
     include $locpath . '/Classes/Entities/User.php';
     include $locpath . '/Classes/Entities/Client.php';      
     include $locpath . '/Classes/Entities/Service.php';
+    include $locpath . '/Classes/Entities/ServiceType.php';
+    include $locpath . '/Classes/Entities/Cart.php';
+    include $locpath . '/Classes/Entities/CartItem.php';
+    include $locpath . '/Classes/Entities/BillItem.php';
     include $locpath . '/Classes/PageDesignData.php';
+    include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     require($locpath . "/PHPmailer/class.phpmailer.php"); // path to the PHPMailer class
     require($locpath . "/PHPmailer/class.smtp.php"); // path to the PHPMailer class
     
-    if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
 
-    $clientsforuser = NULL;   
-    $client = NULL;  
+    $user = NULL;
+    $client = NULL;
     $service = NULL;
     if(isset($_SESSION["user"]) && $_SESSION["user"] != NULL)
     {
-        $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
+        $user = $_SESSION["user"];        
     }
     if(isset($_SESSION["client"]) && $_SESSION["client"] != NULL)
     {
         $client = $_SESSION["client"];
     }
-    
+   /* 
     $key = NULL;
     $val = NULL;
     $iv = NULL;
@@ -42,11 +52,14 @@
                                         $ciphertext_dec, MCRYPT_MODE_CBC, $iv);
 
         $val = substr($plaintext_dec , strlen($plaintext_dec) - 16);
-    }
-    $isedit = TRUE;
-    if($val == "DEMO_PAGE_PREV_1" || !isset($_SESSION["user"]) || !isset($_SESSION["client"]))
-        $isedit = FALSE;
-     $isedit = TRUE;
+    }*/
+   
+   //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    $isedit = ($client != NULL && $user != NULL);
+    //testing
+    $isedit=true;
+   $IsOpenFromSite=true;    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +73,9 @@
     <meta name="author" content="">
 
     <title>Stylish Portfolio - Start Bootstrap Theme</title>
-
+        <?php 
+         echo '<script src="/js/sitejinnijs.js"></script> ';
+        ?>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -74,6 +89,7 @@
     <LINK href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/spwCustom.js" type="text/javascript"></script>
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -564,7 +580,7 @@
 
 		
     </script>
-
+    
 </HEAD>
 <BODY>
                 <?php
@@ -963,6 +979,20 @@
                     }
 
         ?>
+  
+     
+        
+        <?php 
+             if(($isedit==true)&&($IsOpenFromSite==true)){
+                 
+                 echo '<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">'
+                       .'<div class="container topnav container-fluid">';
+                  include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                  echo ' </div></nav>';
+             }
+
+        ?>
+    
         <!-- Navigation -->
         <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
         <nav id="sidebar-wrapper">
@@ -987,6 +1017,7 @@
                     <a href="#contact" onclick=$("#menu-close").click();>Contact</a>
                 </li>
             </ul>
+           
         </nav>
 
         <!----- Edit button for header ---------->
@@ -1000,16 +1031,44 @@
                     </div>';
             }
         ?>
+          <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row" >
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>
         <!--------------------------------------->
         <!-- Header -->
         <header id="top" class="header">
             <div class="text-vertical-center">
-                <h1><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></h1>
-                <h3><?php echo $pageDesign->allParts['Header']->Address1; ?> | <?php echo $pageDesign->allParts['Header']->Address2; ?> |
-                    <?php echo $pageDesign->allParts['Header']->Phonenum; ?></h3>
+                <h1> <div id="Header_Header" class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>"><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></div></h1>
+                <h3> <div id="Header_Address1" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?>><?php echo $pageDesign->allParts['Header']->Address1; ?> </div>
+                    <div id="Header_Address2" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> > <?php echo $pageDesign->allParts['Header']->Address2; ?> </div>
+                    <div id="Header_Phonenum" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Phonenum; ?></div>
+                </h3>
                 <br>
                 <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
             </div>
+            
+            
+       <!-- <DIV class="row" id="header_div">
+            <DIV id="Header_Header" class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></DIV>
+            <DIV class="address-bar" > 
+                <div id="Header_Address1" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Address1; ?></div>
+                <div id="Header_Address2" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> > <?php echo $pageDesign->allParts['Header']->Address2; ?></div>
+                <div id="Header_Phonenum" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Phonenum; ?></div>
+            </DIV>
+        </DIV>-->
         </header>
 
         <!-- About -->
@@ -1674,7 +1733,10 @@
         // Enable map zooming with mouse scroll when the user clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
-
+   <script src="js/textEditor.js" type="text/javascript"></script>
+   <script type="text/javascript">
+              CreateEditor();
+   </script>
 </body>
 
 </html>
