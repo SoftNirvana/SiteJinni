@@ -34,6 +34,7 @@ and open the template in the editor.
         <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
         <script src="vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="vendor/twbs/bootstrap/dist/js/jquery.js"></script>
+        <script src="js/sitejinnijs.js"></script>
     </head>
     <body>
         <?php
@@ -121,40 +122,130 @@ and open the template in the editor.
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-3">
+                <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-1', 'servicedetails');">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Free Microsite</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted">Setup your free website</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-2', 'servicedetails');">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 class="service-heading">Domain Registration</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <h4 class="service-heading">Domain</h4>
+                    <p class="text-muted">Get a customized domain</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-3', 'servicedetails');">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
-                    <h4 class="service-heading">Digital Marketing</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <h4 class="service-heading">Digimart</h4>
+                    <p class="text-muted">Increase the share of visitors to your site</p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-4', 'servicedetails');">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-primary"></i>
                         <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Website Design</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    <p class="text-muted">Get a customized website designed with functionalities and all</p>
                 </div>
             </div>
         </div>
+    </section>
+    <section id="servicedetails">
+        <div class="row setup-content step activeStepInfo" id="step-1">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1>Free Microsite</h1>
+                    <hr class="col-lg-offset-4 col-lg-4">
+                    <br>
+                    <div class="col-lg-offset-4 col-lg-1">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="text-justify col-lg-3">
+                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
+                            of website development or code writing is not required. Get a website for free. </p>
+                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
+                        <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="microsite/selection.php">Go to page ...</a></span></p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content step hiddenStepInfo" id="step-2">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1>Domain Service</h1>
+                    <hr class="col-lg-offset-4 col-lg-4">
+                    <br>
+                    <div class="col-lg-offset-4 col-lg-1">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="text-justify col-lg-3">
+                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
+                            of website development or code writing is not required. Get a website for free. </p>
+                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
+                        <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="domain/selection.php">Go to page ...</a></span></p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content step hiddenStepInfo" id="step-3">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1>Digital Marketing</h1>
+                    <hr class="col-lg-offset-4 col-lg-4">
+                    <br>
+                    <div class="col-lg-offset-4 col-lg-1">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="text-justify col-lg-3">
+                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
+                            of website development or code writing is not required. Get a website for free. </p>
+                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
+                        <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="digimart/selection.php">Go to page ...</a></span></p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row setup-content step hiddenStepInfo" id="step-4">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1>Website Design</h1>
+                    <hr class="col-lg-offset-4 col-lg-4">
+                    <br>
+                    <div class="col-lg-offset-4 col-lg-1">
+                        <span class="fa-stack fa-4x">
+                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="text-justify col-lg-3">
+                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
+                            of website development or code writing is not required. Get a website for free. </p>
+                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
+                        <p>Change the website design in a blink of an eye.</p>
+                        <p><span><a href="webdesign/selection.php">Go to page ...</a></span></p> 
+                    </div>
+                </div>
+            </div>
+        </div>        
     </section>
 
     <hr>
