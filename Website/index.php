@@ -257,20 +257,7 @@ and open the template in the editor.
                 <div class="col-lg-10">
                     <h2 style="color: crimson">Micro Market CMS</h2>
                 
-                    <ul class="list-inline">
-                        <li>
-                            <a href="microsite/selection.php"><i class="fa fa-beer" > <span class="network-name" style="color: crimson; font-weight: bolder">Microsite</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="domain/selection.php"><i class="fa fa-binoculars" > <span class="network-name" style="color: crimson; font-weight: bolder">Domain</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="digimart/selection.php"><i class="fa fa-facebook-square" > <span class="network-name" style="color: crimson; font-weight: bolder">Digital Marketing</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="webdesign/selection.php"><i class="fa fa-android" > <span class="network-name" style="color: crimson; font-weight: bolder">Website Design</span> </i></a>
-                        </li>
-                    </ul>
+                    
                 </div>
             </div>
 

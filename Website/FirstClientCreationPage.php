@@ -2,7 +2,7 @@
     include './Classes/DataAccess.php';
     include './Classes/Entities/EntityBase.php';
     include './Classes/Entities/User.php';
-    include './Classes/Entities/Client.php';      
+    include './Classes/Entities/Client.php';
     include './Classes/Entities/Service.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
@@ -24,9 +24,6 @@
         $clientsforuser = NULL;   
         $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
     }
-
-   
-
 
  ?>
 <!DOCTYPE html>
