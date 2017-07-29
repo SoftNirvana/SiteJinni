@@ -106,7 +106,7 @@ and open the template in the editor.
                                     <input type="text" class="form-control" placeholder="Search SiteJinni websites" />
                                     <div class="input-group-btn">
                                         <div class="btn-group" role="group">
-                                            <input type="submit" name="searchsubmit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                                         </div>
                                     </div>
                                 </div>
