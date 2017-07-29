@@ -69,7 +69,7 @@ and open the template in the editor.
         
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
+        <div class="container topnav" style="margin-top: 0px">
             <!-- Brand and toggle get grouped for better mobile display -->
             <?php 
                 include("htmlassets/sitejinniNavBar.php");
@@ -83,8 +83,7 @@ and open the template in the editor.
     <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
-        <div class="container">
-            <div class="row" style="height: 30px"></div>
+        <div class="container">            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
@@ -102,9 +101,20 @@ and open the template in the editor.
                                     <h4 style="color: black; margin: 0px">Build Webste</h4>
                                 </div>
                             </a>
+                            <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
+                                <div class="row input-group" id="adv-search">
+                                    <input type="text" class="form-control" placeholder="Search SiteJinni websites" />
+                                    <div class="input-group-btn">
+                                        <div class="btn-group" role="group">
+                                            <input type="submit" name="searchsubmit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         
                     </div>
+                    
                 </div>
             </div>
 
@@ -243,43 +253,7 @@ and open the template in the editor.
             </div>
         </div>        
     </section>
-
-    <hr>
-    <!-- Page Content -->
-
-   
-    <a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-10">
-                    <h2 style="color: crimson">Micro Market CMS</h2>
-                
-                    <ul class="list-inline">
-                        <li>
-                            <a href="microsite/selection.php"><i class="fa fa-beer" > <span class="network-name" style="color: crimson; font-weight: bolder">Microsite</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="domain/selection.php"><i class="fa fa-binoculars" > <span class="network-name" style="color: crimson; font-weight: bolder">Domain</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="digimart/selection.php"><i class="fa fa-facebook-square" > <span class="network-name" style="color: crimson; font-weight: bolder">Digital Marketing</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="webdesign/selection.php"><i class="fa fa-android" > <span class="network-name" style="color: crimson; font-weight: bolder">Website Design</span> </i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.banner -->
-    <hr>
+    
     <!-- Footer -->
     <footer>
         <div class="container">

@@ -3,17 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp64/www/MkttCMS/htmlassets/cart_usersection.php</file>
-            <file>file:/C:/wamp64/www/MkttCMS/installDisclaimerPage.php</file>
-            <file>file:/C:/wamp64/www/MkttCMS/userPortfolioPage.php</file>
-            <file>file:/C:/wamp64/www/MkttCMS/microsite/selection.php</file>
-            <file>file:/C:/wamp64/www/MkttCMS/index.php</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/docroots/templates/Real%20Estate/Architecture/stylish_singlepage/index.php</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/docroots/templates/Real%20Estate/Commercial/REC1/index.php</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/docroots/templates/Real%20Estate/Architecture/stylish_singlepage/js/textEditor.js</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/index.php</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/css/landing-page.css</file>
-            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/js/sitejinnijs.js</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/index.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/htmlassets/sitejinniNavBar.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/CartAjaxPost.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/fbcallback.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/loginPage.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/js/sitejinnijs.js</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/htmlassets/cart_usersection.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/DataAccess.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/installDisclaimerPage.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/userPortfolioPage.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/ClientWebsiteCreation.php</file>
+            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/cpanel_subdomains.php</file>
         </group>
     </open-files>
 </project-private>
