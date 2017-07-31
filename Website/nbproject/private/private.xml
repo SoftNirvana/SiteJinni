@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/index.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/htmlassets/sitejinniNavBar.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/CartAjaxPost.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/fbcallback.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/loginPage.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/js/sitejinnijs.js</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/htmlassets/cart_usersection.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/DataAccess.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/installDisclaimerPage.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/userPortfolioPage.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/ClientWebsiteCreation.php</file>
-            <file>file:/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/Classes/PostSingle/cpanel_subdomains.php</file>
+            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/serviceSelectionPage.php</file>
+            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/index.php</file>
+            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/FirstClientCreationPage.php</file>
+            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/servicesAdditionPage.php</file>
+            <file>file:/C:/wamp64/www/SiteJinni/SiteJinni/Website/js/sitejinnijs.js</file>
         </group>
     </open-files>
 </project-private>

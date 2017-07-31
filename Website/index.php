@@ -243,7 +243,6 @@ and open the template in the editor.
             </div>
         </div>        
     </section>
-    
     <!-- Footer -->
     <footer>
         <div class="container">
