@@ -103,7 +103,7 @@ and open the template in the editor.
                             </a>
                             <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
                                 <div class="row input-group" id="adv-search">
-                                    <input type="text" class="form-control" placeholder="Search SiteJinni websites" />
+                                    <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites" />
                                     <div class="input-group-btn">
                                         <div class="btn-group" role="group">
                                             <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -171,74 +171,83 @@ and open the template in the editor.
         <div class="row setup-content step activeStepInfo" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Free Microsite</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Get a professional web-site just in 5 minutes. Don’t know how to? 
-                           No worries, the Jinni will guide you.</p>
-                    </div>
+                    <a href="microsite/selection.php">
+                        <h1>Free Microsite</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
+                            <p>No worries, the Jinni will guide you.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Domain Service</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
-                    </div>
+                    <a href="domain/selection.php">
+                        <h1>Domain Service</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Digital Marketing</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
-                           Improve your search engine ranking with our Digimart service.</p>
-                    </div>
+                    <a href="digimart/selection.php">
+                        <h1>Digital Marketing</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
+                               Improve your search engine ranking with our Digimart service.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Website Design</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Greedy for more? Get a customized professional web-site designed by our experts.</p>
-                    </div>
+                    <a href="microsite/selection.php">
+                        <h1>Website Design</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Greedy for more?</p>
+                            <p>Get a customized professional web-site designed by our experts.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>        

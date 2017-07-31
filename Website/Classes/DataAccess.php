@@ -23,18 +23,18 @@ class DataAccess {
         //$dbname = "CMSDBMAIN";
         
         //SiteJinni
-        $servername = "localhost";
-        $username = "iamjinni_service";
-        $password = "SN.sitejinni@1";
-        $port = "3306";
-        $dbname = "iamjinni_CMSDBMAIN";
+        //$servername = "localhost";
+        //$username = "iamjinni_service";
+        //$password = "SN.sitejinni@1";
+        //$port = "3306";
+        //$dbname = "iamjinni_CMSDBMAIN";
         
         //Dev
-        //$servername = "localhost";
-        //$username = "root";
-        //$password = "170681";
-        //$port = "8889";
-        //$dbname = "CMSDBMAIN";
+        $servername = "localhost";
+        $username = "root";
+        $password = "170681";
+        $port = "8889";
+        $dbname = "CMSDBMAIN";
         
         //Dev
         //$servername = "localhost";

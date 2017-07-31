@@ -70,7 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //var_dump($templatedir);
                 FunctionsClass::recurse_copy($templatedir, $clientdocrootpath);
                 copy('../../clientjson/header_data.json', $clientdocrootpath . '/header_data.json');
-
+                
+                $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
+                foreach ($client as $key => $value) {
+                    fwrite($sitejinnifile, $value .",");
+                }
+                fwrite($sitejinnifile, ":");
+                fclose($sitejinnifile);                
                 CartFunctionsClass::AddCartItem($user, $client, $service, ["MS", "TM"]);
 
                 echo "/installDisclaimerPage.php";

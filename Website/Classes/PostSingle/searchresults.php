@@ -33,7 +33,28 @@
     </head>
     <body>
         <?php
-        // put your code here
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if(isset($_POST["searchsubmit"])) {
+                    $searchparam = $_POST["searchparams"];
+                    $params = str_getcsv($searchparam, " ");
+                    $clnts = Client::GetAllClients();
+                    foreach ($clnts as $key => $clientitem) {
+                        $clientitem = new Client($cid, $cname, $ccnumber1, $ccnumber2, $caddl1, $caddl2, $caddl3, $ccity, $czipcd, $cmailadd, $cmainURL, $cnumserv, $cusrid);
+                        $descfile = "../../docroots/userdocroots/" . $clientitem->clientname . "/docroot/SiteJinni.txt";
+                        if(file_exists($descfile)) {
+                            $desc = file_get_contents($descfile);
+                            $posarr = array();
+                            if($params != NULL && count($params)) {
+                                foreach ($params as $key => $param) {
+                                    $pos = strpos($desc, $param);
+                                    array_push($posarr, $pos);
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
         ?>
         
         <!-- Navigation -->
@@ -51,7 +72,7 @@
         <div class="container">
             <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
                 <div class="row input-group" id="adv-search">
-                    <input type="text" class="form-control" placeholder="Search SiteJinni websites" />
+                    <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites" />
                     <div class="input-group-btn">
                         <div class="btn-group" role="group">
                             <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
