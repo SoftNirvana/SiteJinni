@@ -69,7 +69,7 @@ and open the template in the editor.
         
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
+        <div class="container topnav" style="margin-top: 0px">
             <!-- Brand and toggle get grouped for better mobile display -->
             <?php 
                 include("htmlassets/sitejinniNavBar.php");
@@ -83,8 +83,7 @@ and open the template in the editor.
     <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
-        <div class="container">
-            <div class="row" style="height: 30px"></div>
+        <div class="container">            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
@@ -102,9 +101,20 @@ and open the template in the editor.
                                     <h4 style="color: black; margin: 0px">Build Webste</h4>
                                 </div>
                             </a>
+                            <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
+                                <div class="row input-group" id="adv-search">
+                                    <input type="text" class="form-control" placeholder="Search SiteJinni websites" />
+                                    <div class="input-group-btn">
+                                        <div class="btn-group" role="group">
+                                            <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         
                     </div>
+                    
                 </div>
             </div>
 
