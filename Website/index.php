@@ -253,30 +253,6 @@ and open the template in the editor.
             </div>
         </div>        
     </section>
-
-    <hr>
-    <!-- Page Content -->
-
-   
-    <a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-10">
-                    <h2 style="color: crimson">Micro Market CMS</h2>
-                
-                    
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.banner -->
-    <hr>
     <!-- Footer -->
     <footer>
         <div class="container">
