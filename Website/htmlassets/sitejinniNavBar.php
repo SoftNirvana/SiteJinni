@@ -51,6 +51,7 @@ and open the template in the editor.
         <div class="collapse navbar-collapse" id="navdiv">
             <ul class="nav navbar-nav navbar-left">
                 <LI><a href="sitejinni.com">Home</a></LI>
+                <li><a href="microsite/selection.php">Microsite</a>
                 <LI><a href="#contact">Contact Info</a></LI>
                 <LI><a href="#contact">About</a></LI>
 

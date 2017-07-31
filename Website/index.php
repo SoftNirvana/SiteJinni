@@ -181,10 +181,8 @@ and open the template in the editor.
                         </span>
                     </div>
                     <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
+                        <p>Get a professional web-site just in 5 minutes. Don’t know how to? 
+                           No worries, the Jinni will guide you.</p>
                     </div>
                 </div>
             </div>
@@ -202,10 +200,7 @@ and open the template in the editor.
                         </span>
                     </div>
                     <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
+                        <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
                     </div>
                 </div>
             </div>
@@ -223,10 +218,8 @@ and open the template in the editor.
                         </span>
                     </div>
                     <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
+                        <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
+                           Improve your search engine ranking with our Digimart service.</p>
                     </div>
                 </div>
             </div>
@@ -244,10 +237,7 @@ and open the template in the editor.
                         </span>
                     </div>
                     <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
+                        <p>Greedy for more? Get a customized professional web-site designed by our experts.</p>
                     </div>
                 </div>
             </div>
