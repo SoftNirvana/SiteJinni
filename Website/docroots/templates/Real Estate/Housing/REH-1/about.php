@@ -1,49 +1,47 @@
 <?php
+    
+   $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
-    
+    $spath = $_SERVER["REQUEST_URI"];
+
+    if (strpos($path, 'userdocroots') != false || strpos($spath, 'userdocroots') != false ) {
+      $IsOpenFromSite=true;
+    }
     $locpath = str_replace(stristr($path, '/docroots'), '', $path) ;
-    
+
     include $locpath . '/Classes/DataAccess.php';
     include $locpath . '/Classes/Entities/EntityBase.php';
     include $locpath . '/Classes/Entities/User.php';
-    include $locpath . '/Classes/Entities/Client.php';      
+    include $locpath . '/Classes/Entities/Client.php';
     include $locpath . '/Classes/Entities/Service.php';
+    include $locpath . '/Classes/Entities/ServiceType.php';
+    include $locpath . '/Classes/Entities/Cart.php';
+    include $locpath . '/Classes/Entities/CartItem.php';
+    include $locpath . '/Classes/Entities/BillItem.php';
     include $locpath . '/Classes/PageDesignData.php';
-    if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
+    
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
 
-    $clientsforuser = NULL;   
-    $client = NULL;  
+    $user = NULL;
+    $client = NULL;
     $service = NULL;
     if(isset($_SESSION["user"]) && $_SESSION["user"] != NULL)
     {
-        $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
+        $user = $_SESSION["user"];        
     }
     if(isset($_SESSION["client"]) && $_SESSION["client"] != NULL)
     {
         $client = $_SESSION["client"];
     }
-    
-    $key = NULL;
-    $val = NULL;
-    $iv = NULL;
-    if(isset($_GET['str']) && isset($_GET['key']) && isset($_GET['iv']))
-    {
-        $str = $_GET['str'];
-        $key = $_GET['key'];
-        $iv = $_GET['iv'];
-
-        $ciphertext_dec = base64_decode($str);
-
-        $plaintext_dec = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key,
-                                        $ciphertext_dec, MCRYPT_MODE_CBC, $iv);
-
-        $val = substr($plaintext_dec , strlen($plaintext_dec) - 16);
-    }
-    $isedit = TRUE;
-    if($val == "DEMO_PAGE_PREV_1" || !isset($_SESSION["user"]) || !isset($_SESSION["client"]))
-        $isedit = FALSE;
+    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    $isedit = ($client != NULL && $user != NULL);
+    //testing
+    //$isedit=true;
+    //$IsOpenFromSite=true;
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <HTML lang="en">
 <HEAD>
     <META charset="utf-8">
@@ -472,7 +470,7 @@
 		});
 		//------------------------------------------------------------
     </script>
-
+ <script src="js/recCustom.js"></script>
 </HEAD>
 <BODY>
     <?php
@@ -518,7 +516,7 @@
                     $header->Address2 = $client->clientaddressline2 . ($client->clientaddressline3 != NULL? ', ' . $client->clientaddressline3 . ',':'') . ' ' . $client->clientcity . ' - ' . $client->clientzipcode;
                     $header->Phonenum = $client->clientcontactnumber1;
                     $header->CompanyName = $client->clientname;
-                }                    
+                }
 		foreach ($json_a["allParts"]["MainImages"] as $key2 => $value2) $mainimages->{$key2} = $value2;  //----- Main Images data conversion --- $key2 $value2
 		
 		//----- Amenities data conversion------------------------------
@@ -754,18 +752,18 @@
 						
 			//----------- POST Request - Save about description -------------------------			
 			if(isset($_POST['aboutDesc']) && isset($_FILES['aboutFile'])) {
-                            $target_file_path = '';
-                            if(!empty($_FILES['aboutFile'])) {
-                                    $target_dir_about = "aboutfile";
-                                    $file_name_ab = $_FILES['aboutFile']['name'];
-                                    $tmp_name_ab = $_FILES['aboutFile']['tmp_name'];				
-                                    $target_file_path = "$target_dir_about/$file_name_ab";
-
-                                    move_uploaded_file($tmp_name_ab, $target_file_path);	
-                            }
-
-                            $pageDesign->allParts['About']->AboutDescription = $_POST['aboutDesc'];
-                            $pageDesign->allParts['About']->AboutImagePath = $target_file_path;
+				$target_file_path = '';
+				if(!empty($_FILES['aboutFile'])) {
+					$target_dir_about = "aboutfile";
+					$file_name_ab = $_FILES['aboutFile']['name'];
+					$tmp_name_ab = $_FILES['aboutFile']['tmp_name'];				
+					$target_file_path = "$target_dir_about/$file_name_ab";
+					
+					move_uploaded_file($tmp_name_ab, $target_file_path);	
+				}
+				
+				$pageDesign->allParts['About']->AboutDescription = $_POST['aboutDesc'];
+				$pageDesign->allParts['About']->AboutImagePath = $target_file_path;
 			}
 			//----------------------------------------------------------------------------
 			
@@ -807,8 +805,38 @@
 		
     ?>
     <DIV>
-	
-        <!----- Edit button for header ---------->
+	 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+             
+             <div class="container topnav container-fluid">
+                   <!--<DIV id="sitejinninavbar"></DIV>-->
+               <?php 
+                    if(($isedit==true)&&($IsOpenFromSite==true)){
+                         include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                    }
+
+               ?>
+             </div>
+         </NAV>
+        
+         <!----- Install button for Template ---------->
+       
+        <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row" >
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>
+		<!----- Edit button for header ---------->
         <?php
             if($isedit == TRUE)
             {
@@ -819,7 +847,7 @@
                     </div>';
             }
         ?>
-        <!--------------------------------------->
+		<!--------------------------------------->
         <DIV class="row" id="header_div">
             <DIV class="brand"><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></DIV>
             <DIV class="address-bar">
@@ -1028,34 +1056,34 @@
 				
 				<!--------------- Header edit dialog ----------------->
 				<div class="modal fade" id="edit_header" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Edit Header</h4>
-                            </div>
-                            <div class="box">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <form action="about.php" method="post">
-                                            Main Header <br><input type="text" id="header" name="header" style="width: 100%"><br>
-                                            Company Name <br><input type="text" id="compname" name="compname" style="width: 100%"><br>
-                                            Address Line1 <br><input type="text" id="address1" name="address1" style="width: 100%"><br>
-                                            Address Line2 <br><input type="text" id="address2" name="address2" style="width: 100%"><br>
-                                            Phone Number <br><input type="text" id="phonenum" name="phonenum" style="width: 100%"><br>
-                                            <hr>
-                                            <input class="col-lg-12" id="save_header" name="save_header" type="submit" value="Save">
-                                        </form>
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Edit Header</h4>
+                                            </div>
+                                            <div class="box">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <form action="about.php" method="post">
+                                                            Main Header <br><input type="text" id="header" name="header" style="width: 100%"><br>
+                                                            Company Name <br><input type="text" id="compname" name="compname" style="width: 100%"><br>
+                                                            Address Line1 <br><input type="text" id="address1" name="address1" style="width: 100%"><br>
+                                                            Address Line2 <br><input type="text" id="address2" name="address2" style="width: 100%"><br>
+                                                            Phone Number <br><input type="text" id="phonenum" name="phonenum" style="width: 100%"><br>
+                                                            <hr>
+                                                            <input class="col-lg-12" id="save_header" name="save_header" type="submit" value="Save">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 				 </div>
 				 <!--------------------------------------------------->
 				 
 				 <!--------------- About edit dialog ----------------->
 				 <div class="modal fade" id="edit_about" role="dialog">
-                    <!-- Modal content-->
+                                        <!-- Modal content-->
 					<div class="modal-dialog">
 						<div class="well">
 							<div>
@@ -1083,12 +1111,12 @@
 							</div>
 						</div>
 					</div>
-                </div>  
+                                </div>  
 				<!--------------------------------------------------->
 				
 				<!--------------- Projects edit dialog -------------->
 				<div class="modal fade" id="edit_projects" role="dialog">
-                    <!-- Modal content-->
+                                <!-- Modal content-->
 					<div class="modal-dialog">
 						<div class="well">
 							<div>
@@ -1124,12 +1152,12 @@
 							</div>
 						</div>
 					</div>
-                </div>  
+                                    </div>  
 				<!--------------------------------------------------->
 				
 				<!--------------- Members edit dialog --------------->
 				<div class="modal fade" id="edit_members" role="dialog">
-                    <!-- Modal content-->
+                                <!-- Modal content-->
 					<div class="modal-dialog">
 						<div class="well">
 							<div>
@@ -1208,7 +1236,7 @@
             </SCRIPT>
             <script>
                 CKEDITOR.replace('about_description_editor');
-				CKEDITOR.replace('project_description_editor');				
+                CKEDITOR.replace('project_description_editor');				
             </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.20&sensor=true&key=AIzaSyCYKHARqf-KwLQ5pJG6xVHHa_E2dt9wNJA&libraries=places&callback=initMap" type="text/javascript">
 

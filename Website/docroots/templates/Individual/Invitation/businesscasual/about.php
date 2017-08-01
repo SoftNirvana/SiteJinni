@@ -1,52 +1,47 @@
 <?php
     
+   $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
-    
+    $spath = $_SERVER["REQUEST_URI"];
+
+    if (strpos($path, 'userdocroots') != false || strpos($spath, 'userdocroots') != false ) {
+      $IsOpenFromSite=true;
+    }
     $locpath = str_replace(stristr($path, '/docroots'), '', $path) ;
-    
+
     include $locpath . '/Classes/DataAccess.php';
     include $locpath . '/Classes/Entities/EntityBase.php';
     include $locpath . '/Classes/Entities/User.php';
-    include $locpath . '/Classes/Entities/Client.php';      
+    include $locpath . '/Classes/Entities/Client.php';
     include $locpath . '/Classes/Entities/Service.php';
+    include $locpath . '/Classes/Entities/ServiceType.php';
+    include $locpath . '/Classes/Entities/Cart.php';
+    include $locpath . '/Classes/Entities/CartItem.php';
+    include $locpath . '/Classes/Entities/BillItem.php';
+    include $locpath . '/Classes/PageDesignData.php';
+    include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     
-    if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
 
-    $clientsforuser = NULL;   
-    $client = NULL;  
+    $user = NULL;
+    $client = NULL;
     $service = NULL;
     if(isset($_SESSION["user"]) && $_SESSION["user"] != NULL)
     {
-        $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
+        $user = $_SESSION["user"];        
     }
     if(isset($_SESSION["client"]) && $_SESSION["client"] != NULL)
     {
         $client = $_SESSION["client"];
     }
-    
-    $key = NULL;
-    $val = NULL;
-    $iv = NULL;
-    if(isset($_GET['str']) && isset($_GET['key']) && isset($_GET['iv']))
-    {
-        $str = $_GET['str'];
-        $key = $_GET['key'];
-        $iv = $_GET['iv'];
-
-        $ciphertext_dec = base64_decode($str);
-
-        $plaintext_dec = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key,
-                                        $ciphertext_dec, MCRYPT_MODE_CBC, $iv);
-
-        $val = substr($plaintext_dec , strlen($plaintext_dec) - 16);
-    }
-    $isedit = TRUE;
-    if($val == "DEMO_PAGE_PREV_1" || !isset($_SESSION["user"]) || !isset($_SESSION["client"]))
-        $isedit = FALSE;
-        
-     
+    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    $isedit = ($client != NULL && $user != NULL);
+    //testing
+    //$isedit=true;
+    //$IsOpenFromSite=true;
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <HTML lang="en">
 <HEAD>
     <META charset="utf-8">
@@ -145,6 +140,7 @@
 
 		.hover:hover {
 			background-color: rgba(170, 188, 212, 0.8);
+			// You can tweak with other background properties too (ie: background-image)...
 		}
     </style>
     <script type="text/javascript">
@@ -474,11 +470,11 @@
 		});
 		//------------------------------------------------------------
     </script>
-
+ <script src="js/recCustom.js"></script>
 </HEAD>
 <BODY>
     <?php
-		include 'PageDesignData.php';
+		
 
 		//------------ PHP Initializations - Objects from json file -------------------------
 		
@@ -512,7 +508,15 @@
 		$projects->Projects= array();		
 		
 		//---------------------- Array to object conversions ----------------------------		
-		foreach ($json_a["allParts"]["Header"] as $key1 => $value1) $header->{$key1} = $value1;  //----- Header data conversion --- $key1 $value1
+                if($json_a["allParts"]["Header"] != NULL) {
+                    foreach ($json_a["allParts"]["Header"] as $key1 => $value1) $header->{$key1} = $value1;  //----- Header data conversion --- $key1 $value1
+                } else {
+                    $header->CompanyName = $client->clientname;
+                    $header->Address1 = $client->clientaddressline1;
+                    $header->Address2 = $client->clientaddressline2 . ($client->clientaddressline3 != NULL? ', ' . $client->clientaddressline3 . ',':'') . ' ' . $client->clientcity . ' - ' . $client->clientzipcode;
+                    $header->Phonenum = $client->clientcontactnumber1;
+                    $header->CompanyName = $client->clientname;
+                }
 		foreach ($json_a["allParts"]["MainImages"] as $key2 => $value2) $mainimages->{$key2} = $value2;  //----- Main Images data conversion --- $key2 $value2
 		
 		//----- Amenities data conversion------------------------------
@@ -545,7 +549,12 @@
 		} 
 		//---------------------------------------------------------------
 
-		foreach ($json_a["allParts"]["Location"] as $key5 => $value5) $location->{$key5} = $value5;  //----- Location(Site) data conversion --- $key5 $value5
+                if($json_a["allParts"]["Location"] != NULL) {                    
+                    foreach ($json_a["allParts"]["Location"] as $key5 => $value5) $location->{$key5} = $value5;  //----- Location(Site) data conversion --- $key5 $value5
+                } else {
+                    $location->LocationLat = 37.0625;
+                    $location->LocationLng = -95.677068;
+                }
 		foreach ($json_a["allParts"]["About"] as $key6 => $value6) $about->{$key6} = $value6;  //----- About data conversion --- $key6 $value6
 		
 		//----- Documents data conversion------------------------------
@@ -564,7 +573,15 @@
 		} 
 		//--------------------------------------------------------------
 		
-		foreach ($json_a["allParts"]["CompanyLocation"] as $key8 => $value8) $companyloc->{$key8} = $value8;  //----- Location(Company - Office/Business Office) data conversion --- $key8 $value8
+                if($json_a["allParts"]["CompanyLocation"] != NULL) {
+                    foreach ($json_a["allParts"]["CompanyLocation"] as $key8 => $value8) $companyloc->{$key8} = $value8;  //----- Location(Company - Office/Business Office) data conversion --- $key8 $value8
+                } else {
+                        $companyloc->CompanyAddress = $client->clientaddressline1 . ', ' . $client->clientaddressline2 . ($client->clientaddressline3 != NULL? ', ' . $client->clientaddressline3 . ',':'') . ' ' . $client->clientcity . ' - ' . $client->clientzipcode;
+                        $companyloc->CompanyNumber = $client->clientcontactnumber1;
+                        $companyloc->CompanyEmail = $client->clientmailaddress;
+                        $companyloc->CompanyLat = 37.0625;
+                        $companyloc->CompanyLng = -95.677068;
+                }
 
 		//----- Projects data conversion--------------------------------
 		// $key9 $value9 $keyTemp7 $valueTemp7 $keyTemp8 $valueTemp8
@@ -716,7 +733,7 @@
 				$memName = $_POST['memName'];
 				$memDesig = $_POST['memDesig'];
 				
-				if(!empty($_FILES['docFile'])) {
+				if(!empty($_FILES['memberImageFile'])) {
 					$target_dir_members = "memberfiles";
 					$file_name_mm = $_FILES['memberImageFile']['name'];
 					$tmp_name_mm = $_FILES['memberImageFile']['tmp_name'];				
@@ -735,11 +752,11 @@
 						
 			//----------- POST Request - Save about description -------------------------			
 			if(isset($_POST['aboutDesc']) && isset($_FILES['aboutFile'])) {
-				
-				if(!empty($_FILES['docFile'])) {
+				$target_file_path = '';
+				if(!empty($_FILES['aboutFile'])) {
 					$target_dir_about = "aboutfile";
-					$file_name_ab = $_FILES['docFile']['name'];
-					$tmp_name_ab = $_FILES['docFile']['tmp_name'];				
+					$file_name_ab = $_FILES['aboutFile']['name'];
+					$tmp_name_ab = $_FILES['aboutFile']['tmp_name'];				
 					$target_file_path = "$target_dir_about/$file_name_ab";
 					
 					move_uploaded_file($tmp_name_ab, $target_file_path);	
@@ -788,8 +805,38 @@
 		
     ?>
     <DIV>
-	
-        <!----- Edit button for header ---------->
+	 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+             
+             <div class="container topnav container-fluid">
+                   <!--<DIV id="sitejinninavbar"></DIV>-->
+               <?php 
+                    if(($isedit==true)&&($IsOpenFromSite==true)){
+                         include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                    }
+
+               ?>
+             </div>
+         </NAV>
+        
+         <!----- Install button for Template ---------->
+       
+        <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row" >
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>
+		<!----- Edit button for header ---------->
         <?php
             if($isedit == TRUE)
             {
@@ -800,7 +847,7 @@
                     </div>';
             }
         ?>
-        <!--------------------------------------->
+		<!--------------------------------------->
         <DIV class="row" id="header_div">
             <DIV class="brand"><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></DIV>
             <DIV class="address-bar">
@@ -833,7 +880,7 @@
             </NAV>
              <DIV class="container">
 				<!----- Edit button for about ----------->
-                                <?php
+				<?php
                                     if($isedit == TRUE)
                                     {
                                         echo '<div class="col-md-1 col-sm-1" style="position:absolute;background-color:transparent;z-index: 1">
@@ -861,109 +908,109 @@
 					</DIV>
 				</DIV>
 				<DIV class="row">
-                                    <!----- Edit button for projects ---------->
-                                    <?php
-                                        if($isedit == TRUE)
-                                        {
-                                            echo '<div class="col-md-12 col-sm-12" style="position:absolute;background-color:transparent;z-index: 1">
-                                                    <div type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit_projects" style="background-color:transparent;border:none">
-                                                        <button class="glyphicon glyphicon-edit" style="fill-opacity:.5;" />
-                                                    </div>
-                                                </div>';
-                                        }
-                                    ?>
-                                    <!----------------------------------------->
-                                    <DIV class="box">
-                                        <DIV class="col-lg-12">
-                                                <HR>
-                                                <H2 class="intro-text text-center">
-                                                        Our
-                                                        <STRONG>Projects </STRONG>
-                                                </H2>
-                                                <HR>
-                                        </DIV>
-                                        <!------------ Projects Display ------------->
-                                        <?php
-                                                $allignments = array("img-left", "img-right");
-                                                $textallignments = array("text-left", "text-right");
-                                                $existingProjects = $pageDesign->allParts['Projects']->Projects;
-                                                $cnt = 0;
-                                                foreach ($existingProjects as $keyExPr => $valueExPr) {
-                                                        if (!in_array($valueExPr->imagePath,array(".",".."))) 
-                                                        {	
-                                                                if($valueExPr->imagePath != '' || $valueExPr->ProjectDescription != '')
-                                                                {
-                                                                        if (!is_dir($valueExPr->imagePath))
-                                                                        {
-                                                                                echo '<div class="row">
-                                                                                        <a href="'.$valueExPr->ProjectURL.'" target="_blank">
-                                                                                                <DIV class="col-lg-12">
-                                                                                                        <IMG style="height: 170px; width: 200px;margin:7px 7px 7px 7px;" class="img-responsive img-border '. $allignments[$cnt % 2] .'" alt="" src="'.$valueExPr->imagePath.'">
-                                                                                                        <HR class="visible-xs">
-
-                                                                                                        <div style="margin:7px 7px 7px 7px;">
-                                                                                                        <H3 class="intro-text '.$textallignments[$cnt % 2] .'">
-                                                                                                                <STRONG>'.$valueExPr->ProjectName.'</STRONG>
-                                                                                                        </H3>
-                                                                                                                <div class="'.$textallignments[$cnt % 2] .'">
-                                                                                                                '.$valueExPr->ProjectDescription.'
-                                                                                                                </div>
-                                                                                                        </div>
-                                                                                                </DIV>
-                                                                                        </a>
-                                                                                </div>';	
-                                                                        }
-                                                                }
-                                                        }
-                                                        $cnt = $cnt + 1;
-                                                }							
+					<!----- Edit button for projects ---------->
+					<?php
+                                            if($isedit == TRUE)
+                                            {
+                                                echo '<div class="col-md-12 col-sm-12" style="position:absolute;background-color:transparent;z-index: 1">
+                                                        <div type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit_projects" style="background-color:transparent;border:none">
+                                                            <button class="glyphicon glyphicon-edit" style="fill-opacity:.5;" />
+                                                        </div>
+                                                    </div>';
+                                            }
                                         ?>
-                                        <!------------------------------------------->
-                                        <DIV class="clearfix"></DIV>
-                                    </DIV>
+					<!----------------------------------------->
+					<DIV class="box">
+						<DIV class="col-lg-12">
+							<HR>
+							<H2 class="intro-text text-center">
+								Our
+								<STRONG>Projects </STRONG>
+							</H2>
+							<HR>
+						</DIV>
+							<!------------ Projects Display ------------->
+							<?php
+								$allignments = array("img-left", "img-right");
+								$textallignments = array("text-left", "text-right");
+								$existingProjects = $pageDesign->allParts['Projects']->Projects;
+								$cnt = 0;
+								foreach ($existingProjects as $keyExPr => $valueExPr) {
+									if (!in_array($valueExPr->imagePath,array(".",".."))) 
+									{	
+										if($valueExPr->imagePath != '' || $valueExPr->ProjectDescription != '')
+										{
+											if (!is_dir($valueExPr->imagePath))
+											{
+												echo '<div class="row">
+													<a href="'.$valueExPr->ProjectURL.'" target="_blank">
+														<DIV class="col-lg-12">
+															<IMG style="height: 170px; width: 200px;margin:7px 7px 7px 7px;" class="img-responsive img-border '. $allignments[$cnt % 2] .'" alt="" src="'.$valueExPr->imagePath.'">
+															<HR class="visible-xs">
+															
+															<div style="margin:7px 7px 7px 7px;">
+															<H3 class="intro-text '.$textallignments[$cnt % 2] .'">
+																<STRONG>'.$valueExPr->ProjectName.'</STRONG>
+															</H3>
+																<div class="'.$textallignments[$cnt % 2] .'">
+																'.$valueExPr->ProjectDescription.'
+																</div>
+															</div>
+														</DIV>
+													</a>
+												</div>';	
+											}
+										}
+									}
+									$cnt = $cnt + 1;
+								}							
+							?>
+							<!------------------------------------------->
+						<DIV class="clearfix"></DIV>
+					</DIV>
 				</DIV>
 				<DIV class="row">
-                                    <!----- Edit button for members ---------->
-                                    <?php
-                                        if($isedit == TRUE)
-                                        {
-                                            echo '<div class="col-md-12 col-sm-12" style="position:absolute;background-color:transparent;z-index: 1">
-                                                    <div type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit_members" style="background-color:transparent;border:none">
-                                                        <button class="glyphicon glyphicon-edit" style="fill-opacity:.5;" />
-                                                    </div>
-                                                </div>';
-                                        }
-                                    ?>
-                                    <!---------------------------------------->
-                                    <DIV class="box">
-                                        <DIV class="col-lg-12">
-                                            <HR>
-                                            <H2 class="intro-text text-center">
-                                                    Our
-                                                    <STRONG>Team</STRONG>
-                                            </H2>
-                                            <HR>
-                                        </DIV>
-                                            <!------------ Members Display ------------->
-                                            <?php
-                                                if($pageDesign->allParts['Members']->Members !=null) {
-                                                    foreach ($pageDesign->allParts['Members']->Members as $memberKey => $memberValue) {
-                                                        echo '<DIV class="col-sm-4 text-center">
-                                                                <IMG class="img-thumbnail" style="height:250px;" alt="" src="'.$memberValue->imagePath.'">
-                                                                <H3>
-                                                                        '.$memberValue->MemberName.'                         <SMALL>'. $memberValue->MemberDesignation.'</SMALL>
-                                                                </H3>
-                                                            </DIV>';
-                                                    } 
-                                                }
-                                            ?>
-                                            <!------------------------------------------->
-                                        <DIV class="clearfix"></DIV>
-                                    </DIV>
+					<!----- Edit button for members ---------->
+					<?php
+                                            if($isedit == TRUE)
+                                            {
+                                                echo '<div class="col-md-12 col-sm-12" style="position:absolute;background-color:transparent;z-index: 1">
+                                                        <div type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit_members" style="background-color:transparent;border:none">
+                                                            <button class="glyphicon glyphicon-edit" style="fill-opacity:.5;" />
+                                                        </div>
+                                                    </div>';
+                                            }
+                                        ?>
+					<!---------------------------------------->
+					<DIV class="box">
+						<DIV class="col-lg-12">
+							<HR>
+							<H2 class="intro-text text-center">
+								Our
+								<STRONG>Team</STRONG>
+							</H2>
+							<HR>
+						</DIV>
+							<!------------ Members Display ------------->
+							<?php
+								if($pageDesign->allParts['Members']->Members !=null) {
+									foreach ($pageDesign->allParts['Members']->Members as $memberKey => $memberValue) {
+										echo '<DIV class="col-sm-4 text-center">
+											<IMG class="img-thumbnail" style="height:250px;" alt="" src="'.$memberValue->imagePath.'">
+											<H3>
+												'.$memberValue->MemberName.'                         <SMALL>'. $memberValue->MemberDesignation.'</SMALL>
+											</H3>
+										</DIV>';
+									} 
+								}
+							?>
+							<!------------------------------------------->
+						<DIV class="clearfix"></DIV>
+					</DIV>
 				</DIV>
 				<DIV class="row">
 					<!----- Edit button for company location ---------->
-                                        <?php
+					<?php
                                             if($isedit == TRUE)
                                             {
                                                 echo '<div class="col-md-12 col-sm-12" style="position:absolute;background-color:transparent;z-index: 1">
@@ -1036,7 +1083,7 @@
 				 
 				 <!--------------- About edit dialog ----------------->
 				 <div class="modal fade" id="edit_about" role="dialog">
-                                    <!-- Modal content-->
+                                        <!-- Modal content-->
 					<div class="modal-dialog">
 						<div class="well">
 							<div>
@@ -1064,7 +1111,7 @@
 							</div>
 						</div>
 					</div>
-                                    </div>  
+                                </div>  
 				<!--------------------------------------------------->
 				
 				<!--------------- Projects edit dialog -------------->
@@ -1105,12 +1152,12 @@
 							</div>
 						</div>
 					</div>
-                </div>  
+                                    </div>  
 				<!--------------------------------------------------->
 				
 				<!--------------- Members edit dialog --------------->
 				<div class="modal fade" id="edit_members" role="dialog">
-                    <!-- Modal content-->
+                                <!-- Modal content-->
 					<div class="modal-dialog">
 						<div class="well">
 							<div>
@@ -1189,7 +1236,7 @@
             </SCRIPT>
             <script>
                 CKEDITOR.replace('about_description_editor');
-				CKEDITOR.replace('project_description_editor');				
+                CKEDITOR.replace('project_description_editor');				
             </script>
             <script async defer src="https://maps.googleapis.com/maps/api/js?v=3.20&sensor=true&key=AIzaSyCYKHARqf-KwLQ5pJG6xVHHa_E2dt9wNJA&libraries=places&callback=initMap" type="text/javascript">
 

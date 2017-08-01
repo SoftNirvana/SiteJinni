@@ -1,49 +1,45 @@
 <?php
     
+   $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
-    
+    $spath = $_SERVER["REQUEST_URI"];
+
+    if (strpos($path, 'userdocroots') != false || strpos($spath, 'userdocroots') != false ) {
+      $IsOpenFromSite=true;
+    }
     $locpath = str_replace(stristr($path, '/docroots'), '', $path) ;
-    
+
     include $locpath . '/Classes/DataAccess.php';
     include $locpath . '/Classes/Entities/EntityBase.php';
     include $locpath . '/Classes/Entities/User.php';
-    include $locpath . '/Classes/Entities/Client.php';      
+    include $locpath . '/Classes/Entities/Client.php';
     include $locpath . '/Classes/Entities/Service.php';
+    include $locpath . '/Classes/Entities/ServiceType.php';
+    include $locpath . '/Classes/Entities/Cart.php';
+    include $locpath . '/Classes/Entities/CartItem.php';
+    include $locpath . '/Classes/Entities/BillItem.php';
     include $locpath . '/Classes/PageDesignData.php';
-    if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
+    
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
 
-    $clientsforuser = NULL;   
-    $client = NULL;  
+    $user = NULL;
+    $client = NULL;
     $service = NULL;
     if(isset($_SESSION["user"]) && $_SESSION["user"] != NULL)
     {
-        $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
+        $user = $_SESSION["user"];        
     }
     if(isset($_SESSION["client"]) && $_SESSION["client"] != NULL)
     {
         $client = $_SESSION["client"];
     }
-    
-    $key = NULL;
-    $val = NULL;
-    $iv = NULL;
-    if(isset($_GET['str']) && isset($_GET['key']) && isset($_GET['iv']))
-    {
-        $str = $_GET['str'];
-        $key = $_GET['key'];
-        $iv = $_GET['iv'];
-
-        $ciphertext_dec = base64_decode($str);
-
-        $plaintext_dec = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, $key,
-                                        $ciphertext_dec, MCRYPT_MODE_CBC, $iv);
-
-        $val = substr($plaintext_dec , strlen($plaintext_dec) - 16);
-    }
-    $isedit = TRUE;
-    if($val == "DEMO_PAGE_PREV_1" || !isset($_SESSION["user"]) || !isset($_SESSION["client"]))
-        $isedit = FALSE;
-     $isedit = TRUE;
+    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    $isedit = ($client != NULL && $user != NULL);
+    //testing
+    //$isedit=true;
+    //$IsOpenFromSite=true;
 ?>
 <!DOCTYPE html>
 <HTML lang="en">
@@ -474,7 +470,7 @@
 		});
 		//------------------------------------------------------------
     </script>
-
+ <script src="js/recCustom.js"></script>
 </HEAD>
 <BODY>
     <?php
@@ -809,7 +805,37 @@
 		
     ?>
     <DIV>
-	
+	 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+             
+             <div class="container topnav container-fluid">
+                   <!--<DIV id="sitejinninavbar"></DIV>-->
+               <?php 
+                    if(($isedit==true)&&($IsOpenFromSite==true)){
+                         include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                    }
+
+               ?>
+             </div>
+         </NAV>
+        
+         <!----- Install button for Template ---------->
+       
+        <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row" >
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>
 		<!----- Edit button for header ---------->
         <?php
             if($isedit == TRUE)

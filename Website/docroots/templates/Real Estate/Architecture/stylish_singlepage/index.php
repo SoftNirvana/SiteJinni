@@ -58,8 +58,8 @@
    // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-    $isedit=true;
-   $IsOpenFromSite=true;    
+    //$isedit=true;
+   //$IsOpenFromSite=true;    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -966,11 +966,28 @@
                                     }
                             }
                             //----------------------------------------------------------------------------------------
+                            //----------------------------------------------------------------------------
+                                // 27062017 code
+                                if(isset($_POST['moddata']) && isset($_POST['modpath']))  {
+                                    $path = $_POST['modpath'];
+                                    $moddata = $_POST['moddata'];
 
+                                    $arr = str_getcsv($path, ";");
+                                    if(count($arr)==2) {
+                                         $pageDesign->allParts[$arr[0]]->{$arr[1]} = $moddata;
+                                    } else if(count($arr)==3) {
+                                        $pageDesign->allParts[$arr[0]]->{$arr[1]}[$arr[2]] = $moddata;
+                                    } else  if(count($arr)==4) {
+                                        $pageDesign->allParts[$arr[0]]->{$arr[1]}[$arr[2]]->{$arr[3]} = $moddata;
+                                    }
+                                    echo $data;
+                                }
+                                ////
                             //------------ Writing changes to json file ---------------------------------------------
                             $json = json_encode($pageDesign);
                             if (json_decode($json) != null)
                             {
+                                echo "Writing";
                                     $file = fopen('header_data.json','w+');
                                     fwrite($file, $json);
                                     fclose($file);
@@ -1318,28 +1335,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
-                        <h4><strong><?php echo $pageDesign->allParts['Header']->CompanyName;?></strong>
-                        </h4>
-                        <?php echo $pageDesign->allParts['CompanyLocation']->CompanyAddress;?>
+                      
                         <ul class="list-unstyled">
-                            <li><i class="fa fa-phone fa-fw"></i><?php echo $pageDesign->allParts['CompanyLocation']->CompanyNumber;?></li>
-                            <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com"><?php echo $pageDesign->allParts['CompanyLocation']->CompanyEmail;?></a></li>
-                        </ul>
-                        <br>
-                        <ul class="list-inline">
                             <li>
-                                <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                                <i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com"><?php echo $pageDesign->allParts['CompanyLocation']->CompanyEmail;?></a>
                             </li>
                         </ul>
-                        <hr class="small">
-                        <p class="text-muted">Copyright &copy; Your Website 2014</p>
-                    </div>
+                       
+                  </div>
+                    
+                    <DIV class="row">
+                        <DIV class="col-lg-12 text-center">
+                            <P> <a href="http://www.sitejinni.com" target="_blank" >www.sitejinni.com</a>  <br><SPAN>Copyright © <?php echo $pageDesign->allParts['Header']->{'CompanyName'}; ?> 2017</SPAN></P>
+                        </DIV>
+                    </DIV>
+                
+
                 </div>
             </div>
             <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
