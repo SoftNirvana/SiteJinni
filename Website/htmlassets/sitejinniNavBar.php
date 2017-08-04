@@ -41,16 +41,17 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<!--<html>
     <head>
         <title>nav bar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+    <body>-->
         <div class="collapse navbar-collapse" id="navdiv">
             <ul class="nav navbar-nav navbar-left">
                 <LI><a href="sitejinni.com">Home</a></LI>
+                <li><a href="microsite/selection.php">Microsite</a>
                 <LI><a href="#contact">Contact Info</a></LI>
                 <LI><a href="#contact">About</a></LI>
 
@@ -73,5 +74,5 @@ and open the template in the editor.
                 }
             ?>
         </div>
-    </body>
-</html>
+    <!--</body>
+</html>-->

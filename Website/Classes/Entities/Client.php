@@ -120,6 +120,38 @@ class Client {
         }
 
     }
+    
+    public static function GetAllClients() {
+        try {
+            $clients = array();
+            $conn = DataAccess::connect();
+            $clnt = null;
+            if($conn != NULL) {
+                $sql = "SELECT clientid, clientname, clientcontactnumber1, clientcontactnumber2, clientaddressline1, " . 
+                       "clientaddressline2, clientaddressline3, clientcity, clientzipcode, clientmailaddress, clientmainURL, " .
+                       "clientnumofservices, userid FROM CLIENT";
+                $result = $conn->query($sql);
+                
+                if ($result != NULL && $result->num_rows > 0) {
+                    // output data of each row
+                    while($row = $result->fetch_assoc()) {
+
+                        $clnt = new Client($row["clientid"],$row["clientname"],$row["clientcontactnumber1"],$row["clientcontactnumber2"],$row["clientaddressline1"],
+                                    $row["clientaddressline2"],$row["clientaddressline3"],$row["clientcity"],$row["clientzipcode"],$row["clientmailaddress"],$row["clientmainURL"],
+                                    $row["clientnumofservices"], $row["userid"]);
+                        array_push($clients, $clnt);
+                    }
+                }
+            }
+            $conn->close();
+
+            return $clients;
+            
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
     public static function GetClientbyUser($user) {
         try {
             $clients = array();

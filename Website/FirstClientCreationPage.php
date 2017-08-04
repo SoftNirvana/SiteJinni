@@ -2,12 +2,13 @@
     include './Classes/DataAccess.php';
     include './Classes/Entities/EntityBase.php';
     include './Classes/Entities/User.php';
-    include './Classes/Entities/Client.php';      
+    include './Classes/Entities/Client.php';
     include './Classes/Entities/Service.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
     /*
     if(!isset($_SESSION["user"])) {
+        
         try {
             $url = "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";            
             $_SESSION["destpage"] = $url;
@@ -15,16 +16,14 @@
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-    }
-    */
+
+        
+    }*/
     if(isset($_SESSION["user"]) && $_SESSION["user"] != NULL)
     {
         $clientsforuser = NULL;   
         $clientsforuser = Client::GetClientbyUser($_SESSION["user"]);
     }
-
-   
-
 
  ?>
 <!DOCTYPE html>
@@ -50,13 +49,11 @@ and open the template in the editor.
         <link href="vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="css/landing-page.css" rel="stylesheet">
-        <link href="css/sitejinni.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="vendor/twbs/bootstrap/dist/js/jquery.js"></script>
         <script src="vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="js/sitejinnijs.js"></script>
 
         <style >
             
@@ -68,6 +65,7 @@ and open the template in the editor.
             }
             label.uname {
                 overflow-wrap: normal;
+                font: x-large/110% "Arial", serif;
             }
             input.cinput {
                 width: 100%;
@@ -194,37 +192,25 @@ and open the template in the editor.
                 <div class="container topnav">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <?php 
-                        include("/htmlassets/sitejinniNavBar.php");
+                        include("htmlassets/sitejinniNavBar.php");
                     ?>
                     <!-- /.navbar-collapse -->
                 </div>
                 <!-- /.container -->
         </nav>
-        <div style="height: 70px"></div>
-        <div class="container">
-            <div class="stepwizard col-md-offset-3">
-                <div class="stepwizard-row setup-panel">
-                  <div class="stepwizard-step">
-                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                    <p><h4>Step 1</h4></p>
-                  </div>
-                  <div class="stepwizard-step">
-                    <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                    <p><h4>Step 2</h4></p>
-                  </div>
-                  <div class="stepwizard-step">
-                    <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                    <p><h4>Step 3</h4></p>
-                  </div>
-                </div>
-            </div>
-            <div style="height: 25px"></div>
-            <form role="form" method="POST" action="FirstClientCreationPage.php">
-                <div class="row setup-content" id="step-1">
-                    <div class="col-md-12">
-                        <h3> Step 1</h3>
-                        <div class="row">
-                            <div id="clientFormDiv" class="col-md-12 col-lg-12 col-sm-12">
+        
+        <div class="container" id="clientFormContDiv" style="margin-top: 7%">
+            <header>
+                <h2>Website Details</h2>
+                <hr>
+            </header>
+            <div class="row" style="margin-top: 2%">
+                    
+                <div class="col-lg-12" >
+                    <div class="box form">
+                        <form  method="POST" action="FirstClientCreationPage.php" id="cientEditForm" name="cientEditForm">
+
+                            <div id="clientFormDiv" class="row text-left">
                                 <?php
                                     $isClientAvailable = FALSE;
                                     $clienttoedit = NULL;
@@ -234,75 +220,85 @@ and open the template in the editor.
                                         $isClientAvailable = TRUE;
                                     }
                                 ?>
-                                <p>
-                                    <input type="hidden" name="clientid" id="clientid" value="<?php if($isClientAvailable) echo $clienttoedit->clientid; ?>"/>
-                                    <label for="clientname" class="uname" data-icon="u">Client Name</label>
+                                <div class="col-lg-12 form-group">
+                                    <input type="hidden" name="clientid" class="form-control" id="clientid" value="<?php if($isClientAvailable) echo $clienttoedit->clientid; ?>"/>
+                                    <label for="clientname" class="uname form-control-static" data-icon="u">Website Name</label>
                                     <span style="color: red">*</span>
-                                    <input id="clientname" name="clientname" oninput="reconcileURLwithName()" class="cinput" required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientname; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientmail" class="uname" data-icon="u">Client Email</label>
+                                    <input id="clientname" name="clientname" oninput="reconcileURLwithName()" class="cinput form-control" required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientname; ?>"/>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <label for="clientURL" class="uname form-control-static" data-icon="u">Website URL</label>
                                     <span style="color: red">*</span>
-                                    <input id="clientmail" name="clientmail" class="cinput" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientmailaddress; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientaddress1" class="uname" data-icon="u">Client Address</label>
-                                    <span style="color: red">*</span>
-                                    <input id="clientaddress1" name="clientaddress1" class="cinput" required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline1; ?>"/>
-                                    <input id="clientaddress2" name="clientaddress2" class="cinput" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline2; ?>"/>
-                                    <input id="clientaddress3" name="clientaddress3" class="cinput" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline3; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientcity" class="uname" data-icon="u">Client City</label>
-                                    <span style="color: red">*</span>
-                                    <input id="clientcity" name="clientcity" class="cinput" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientcity; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientzipcode" class="uname" data-icon="u">Zip Code</label>
-                                    <span style="color: red">&NonBreakingSpace;&NonBreakingSpace;</span>
-                                    <input id="clientzipcode" name="clientzipcode" class="cinput"  type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientzipcode; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientURL" class="uname" data-icon="u">Client URL</label>
-                                    <span style="color: red">*</span>
-                                    <input id="clientURL" name="clientURL" readonly="readonly" class="cinput" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientmainURL; ?>"/>
-                                </p>
-                                <p>
-                                    <label for="clientnumber1" class="uname" data-icon="u">Client Phone Number</label>
-                                    <span style="color: red">*</span>
-                                    <input id="clientnumber1" name="clientnumber1" class="cinput" required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientcontactnumber1; ?>"/>
-                                    <label for="clientnumber2" class="uname" data-icon="u">Client Alt. Phone Number</label>
-                                    <span style="color: red">&NonBreakingSpace;&NonBreakingSpace;</span>
-                                    <input id="clientnumber2" name="clientnumber2" class="cinput" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientcontactnumber2; ?>"/>
-                                </p>
+                                    <input id="clientURL" name="clientURL" readonly="readonly" class="cinput form-control" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientmainURL; ?>"/>
+                                </div>
                             </div>
-                        </div>
-                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+                            <hr>
+
+                            <header>
+                                <h2>Website Contact Details</h2>
+                                <hr>
+                            </header>
+                            <div id="clientFormDiv" class="row text-left">
+                                <div class="col-lg-12 form-group">
+                                    <label for="clientmail" class="uname form-control-static" data-icon="u">Email</label>
+                                    <span style="color: red">*</span>
+                                    <input id="clientmail" name="clientmail" class="cinput form-control" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientmailaddress; ?>"/>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <label for="clientaddress1" class="uname form-control-static" data-icon="u">Address</label>
+                                    <span style="color: red">*</span>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <input id="clientaddress1" name="clientaddress1" class="cinput form-control " required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline1; ?>"/>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <input id="clientaddress2" name="clientaddress2" class="cinput form-control" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline2; ?>"/>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-12">
+                                            <input id="clientaddress3" name="clientaddress3" class="cinput form-control" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientaddressline3; ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <div class="row form-group">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label for="clientcity" class="uname form-control-static" data-icon="u">City</label>
+                                            <span style="color: red">*</span>
+                                            <input id="clientcity" name="clientcity" class="cinput form-control" required="required" type="text" placeholder="mysuperusername690"  value="<?php if($isClientAvailable) echo $clienttoedit->clientcity; ?>"/>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label for="clientzipcode" class="uname form-control-static" data-icon="u">Zip Code</label>
+                                            <span style="color: red">&NonBreakingSpace;&NonBreakingSpace;</span>
+                                            <input id="clientzipcode" name="clientzipcode" class="cinput form-control"  type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientzipcode; ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <div class="row form-group">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label for="clientnumber1" class="uname form-control-static" data-icon="u">Phone Number</label>
+                                            <span style="color: red">*</span>
+                                            <input id="clientnumber1" name="clientnumber1" class="cinput form-control" required="required" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientcontactnumber1; ?>"/>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <label for="clientnumber2" class="uname form-control-static" data-icon="u">Alt. Phone Number</label>
+                                            <span style="color: red">&NonBreakingSpace;&NonBreakingSpace;</span>
+                                            <input id="clientnumber2" name="clientnumber2" class="cinput form-control" type="text" placeholder="mysuperusername690" value="<?php if($isClientAvailable) echo $clienttoedit->clientcontactnumber2; ?>"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 form-group text-right">
+                                    <div class="row form-group">
+                                        <div class="col-lg-offset-9 col-lg-3 col-md-offset-9 col-md-3 col-sm-offset-9 col-sm-3 form-group">
+                                            <input type="submit" id="addSaveClient" class="form-control" value="Save Details" name="clientEditSave"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="row setup-content" id="step-2">
-                    <div class="col-md-12">
-                        <h3> Step 2</h3>
-                        <div class="form-group">
-                          <label class="control-label">Company Name</label>
-                          <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Name" />
-                        </div>
-                        <div class="form-group">
-                          <label class="control-label">Company Address</label>
-                          <input maxlength="200" type="text" required="required" class="form-control" placeholder="Enter Company Address"  />
-                        </div>
-                        <button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
-                    </div>
-                </div>
-                <div class="row setup-content" id="step-3">
-                    <div class="col-md-12">
-                        <h3> Step 3</h3>
-                        <button class="btn btn-success btn-lg pull-right" type="submit" id="addSaveClient" value="Save" name="clientEditSave">Submit</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
-        
-       
     </body>
 </html>

@@ -113,5 +113,22 @@ class ShortDescription extends DesignParts {
 
 class FullPageDesign extends DesignParts {
 	public $allParts;
-} 
+    
+}     
+   // For Individual or Personel or CV     
+ class Education extends DesignParts {
+            public $Degree;
+            public $YearOfPassing;
+            public $Info;
+        }
+ class WorkExperience extends DesignParts{
+     public $CompanyName;
+     public $Designation;
+     public $Experience;
+     Public $Description;
+ }
+ class Skills extends DesignParts{
+     public $SkillName;
+     public $SkillExperience;
+ }
 ?>

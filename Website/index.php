@@ -69,7 +69,7 @@ and open the template in the editor.
         
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
+        <div class="container topnav" style="margin-top: 0px">
             <!-- Brand and toggle get grouped for better mobile display -->
             <?php 
                 include("htmlassets/sitejinniNavBar.php");
@@ -83,8 +83,7 @@ and open the template in the editor.
     <!-- Header -->
     <a name="about"></a>
     <div class="intro-header">
-        <div class="container">
-            <div class="row" style="height: 30px"></div>
+        <div class="container">            
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
@@ -102,9 +101,20 @@ and open the template in the editor.
                                     <h4 style="color: black; margin: 0px">Build Webste</h4>
                                 </div>
                             </a>
+                            <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
+                                <div class="row input-group" id="adv-search">
+                                    <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites" />
+                                    <div class="input-group-btn">
+                                        <div class="btn-group" role="group">
+                                            <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         
                     </div>
+                    
                 </div>
             </div>
 
@@ -161,129 +171,87 @@ and open the template in the editor.
         <div class="row setup-content step activeStepInfo" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Free Microsite</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
-                        <p><span><a href="microsite/selection.php">Go to page ...</a></span></p> 
-                    </div>
+                    <a href="microsite/selection.php">
+                        <h1>Free Microsite</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
+                            <p>No worries, the Jinni will guide you.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Domain Service</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
-                        <p><span><a href="domain/selection.php">Go to page ...</a></span></p> 
-                    </div>
+                    <a href="domain/selection.php">
+                        <h1>Domain Service</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Digital Marketing</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
-                        <p><span><a href="digimart/selection.php">Go to page ...</a></span></p> 
-                    </div>
+                    <a href="digimart/selection.php">
+                        <h1>Digital Marketing</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
+                               Improve your search engine ranking with our Digimart service.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Website Design</h1>
-                    <hr class="col-lg-offset-4 col-lg-4">
-                    <br>
-                    <div class="col-lg-offset-4 col-lg-1">
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                    <div class="text-justify col-lg-3">
-                        <p>Create an online presence for yourself or your business in under 5 minutes. Knowledge 
-                            of website development or code writing is not required. Get a website for free. </p>
-                        <p>Choose from our numerous templates and designs. Upload your display images easily. </p>
-                        <p>Change the website design in a blink of an eye.</p>
-                        <p><span><a href="webdesign/selection.php">Go to page ...</a></span></p> 
-                    </div>
+                    <a href="microsite/selection.php">
+                        <h1>Website Design</h1>
+                        <hr class="col-lg-offset-4 col-lg-4">
+                        <br>
+                        <div class="col-lg-offset-4 col-lg-1">
+                            <span class="fa-stack fa-2x">
+                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </div>
+                        <div class="text-justify col-lg-3">
+                            <p>Greedy for more?</p>
+                            <p>Get a customized professional web-site designed by our experts.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>        
     </section>
-
-    <hr>
-    <!-- Page Content -->
-
-   
-    <a  name="contact"></a>
-    <div class="banner">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-10">
-                    <h2 style="color: crimson">Micro Market CMS</h2>
-                
-                    <ul class="list-inline">
-                        <li>
-                            <a href="microsite/selection.php"><i class="fa fa-beer" > <span class="network-name" style="color: crimson; font-weight: bolder">Microsite</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="domain/selection.php"><i class="fa fa-binoculars" > <span class="network-name" style="color: crimson; font-weight: bolder">Domain</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="digimart/selection.php"><i class="fa fa-facebook-square" > <span class="network-name" style="color: crimson; font-weight: bolder">Digital Marketing</span> </i></a>
-                        </li>
-                        <li>
-                            <a href="webdesign/selection.php"><i class="fa fa-android" > <span class="network-name" style="color: crimson; font-weight: bolder">Website Design</span> </i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.banner -->
-    <hr>
     <!-- Footer -->
     <footer>
         <div class="container">
