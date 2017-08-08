@@ -111,15 +111,7 @@
     //----- Projects data object initialization
     $projects = new PageDesignProjects("Projects");
     $projects->Projects= array();
-    // -- Education object
-    $objEducation=new Education("Education");
-    $objEducation->Education=array();
-     // -- WorkExperience object
-    $objWorkExperience=new WorkExperience("WorkExperience");
-    $objWorkExperience->WorkExperience=array();
-     // -- Education object
-    $objSkills=new Skills("Skills");
-    $objSkills->Skills=array();
+    
     //---------------------- Array to object conversions ----------------------------
     if($json_a["allParts"]["Header"] != NULL) {
     foreach ($json_a["allParts"]["Header"] as $key1 => $value1) $header->{$key1} = $value1;  //----- Header data conversion --- $key1 $value1
@@ -161,7 +153,8 @@
     $documents->{$key4} = $documents_temp;
     }
     //---------------------------------------------------------------
-
+    
+    
     if($json_a["allParts"]["Location"] != NULL) {
     foreach ($json_a["allParts"]["Location"] as $key5 => $value5) $location->{$key5} = $value5;  //----- Location(Site) data conversion --- $key5 $value5
     } else {
@@ -211,6 +204,55 @@
     }
     //----------------------------------------------------------------
 
+    // -- Education object
+    $objEducations=new PageDesignEducations("Educations");
+    $objEducations->Educations=array();
+    
+    //----- Eduction data conversion------------------------------
+    // $edu_key $edu_value $edu_key_Temp $edu_value_Temp $edu_key_Temp4 $edu_value_Temp4
+    foreach ($json_a["allParts"]["Educations"] as $edu_key => $edu_value) {
+        $edus_temp = array();
+        foreach ($edu_value as $edu_key_Temp => $edu_value_Temp) {
+        $edu_temp = new PageDesignEducation("Education");
+        foreach($edu_value_Temp as $edu_key_Temp4 => $edu_value_Temp4) {
+        $edu_temp->{$edu_key_Temp4} = $edu_value_Temp4;
+        }
+        array_push($edus_temp,$edu_temp);
+        }
+        $objEducations->{$edu_key} = $edus_temp;
+    }
+     // -- WorkExperience object
+    $objWorkExperiences=new PageDesignWorkExperiences("WorkExperiences");
+    $objWorkExperiences->WorkExperience=array();
+    // $wexkey $wexvalue4 $wexkeyTemp3 $wexvalueTemp3 $wexkeyTemp4 $wexvalueTemp4
+    foreach ($json_a["allParts"]["WorkExperiences"] as $wexkey => $wexvalue4) {
+    $wex_temp = array();
+    foreach ($wexvalue4 as $wexkeyTemp3 => $wexvalueTemp3) {
+    $wex1_temp = new PageDesignWorkExperience("WorkExperience");
+    foreach($wexvalueTemp3 as $wexkeyTemp4 => $wexvalueTemp4) {
+    $wex1_temp->{$wexkeyTemp4} = $wexvalueTemp4;
+    }
+    array_push($wex_temp,$wex1_temp);
+    }
+    $objWorkExperiences->{$wexkey} = $wex_temp;
+    }
+     // -- Education object
+    $objSkills=new PageDesignSkills("Skills");
+    $objSkills->Skills=array();
+    // $skkey4 $skvalue4 $skkeyTemp3 $skvalueTemp3 $skkeyTemp4 $skvalueTemp4
+    foreach ($json_a["allParts"]["Skills"] as $skkey4 => $skvalue4) {
+    $sks_temp = array();
+    foreach ($skvalue4 as $skkeyTemp3 => $skvalueTemp3) {
+    $sk_temp = new PageDesignSkill("Skill");
+    foreach($skvalueTemp3 as $skkeyTemp4 => $skvalueTemp4) {
+    $sk_temp->{$skkeyTemp4} = $skvalueTemp4;
+    }
+    array_push($sks_temp,$sk_temp);
+    }
+    $objSkills->{$skkey4} = $sks_temp;
+    }
+    //---------------------------------------------------------------
+
     ///---------------------------------------------------------------
     //Composing the full design object (Loaded from JSON)
     $pageDesign->allParts= array(
@@ -222,7 +264,10 @@
     "About"=>$about,
     "Members"=>$members,
     "CompanyLocation"=>$companyloc,
-    "Projects"=>$projects);
+    "Projects"=>$projects,
+    "Educations"=>$objEducations,
+    "WorkExperiences"=>$objWorkExperiences,
+    "Skills"=>$objSkills);
     //-----------------------------------------------------------------
 
     //------------------ Handling POST requests -----------------------
@@ -405,17 +450,22 @@
             <div class="row item">
 
                <div class="twelve columns">
-
-                  <h3>University of Life</h3>
-                  <p class="info">Master in Graphic Design <span>&bull;</span> <em class="date">April 2007</em></p>
-
-                  <p>
+               <h3> <div id="Edu_UniversityName"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'UniversityName'}; ?></div>
+                  University of Life</h3>
+                 <div id="Edu_Degree"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'Degree'}; ?>
+                   <p class="info">Master in Graphic Design <span>&bull;</span></p></div> 
+                   <div id="Edu_YearOfPassing"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'YearOfPassing'}; ?>
+                   <em class="date">April 2007</em>
+</div>
+                 <div id="Edu_Info"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'Info'}; ?>
+                      
+                   <p>
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
                   Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
                   ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
                   Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Nullam dictum felis eu pede mollis pretium.
                   </p>
-
+                </div>  
                </div>
 
             </div> <!-- item end -->

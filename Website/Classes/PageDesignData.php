@@ -115,20 +115,46 @@ class FullPageDesign extends DesignParts {
 	public $allParts;
     
 }     
-   // For Individual or Personel or CV     
- class Education extends DesignParts {
-            public $Degree;
-            public $YearOfPassing;
-            public $Info;
-        }
- class WorkExperience extends DesignParts{
+   // For Individual or Personel or CVs     
+ class PageDesignEducation extends DesignParts {
+    public $UniversityName;
+    public $Degree;
+    public $YearOfPassing;
+    public $Info;
+}
+        
+class PageDesignEducations extends DesignParts {
+    public $Educations;
+
+    public function addEducation($education) {
+
+            array_push($this->Educations, $education);
+    }
+}        
+ class PageDesignWorkExperience extends DesignParts{
      public $CompanyName;
      public $Designation;
      public $Experience;
      Public $Description;
  }
- class Skills extends DesignParts{
+ class PageDesignWorkExperiences extends DesignParts {
+    public $WorkExperiences;
+
+    public function addExperience($WorkExperience) {
+
+            array_push($this->WorkExperiences, $WorkExperience);
+    }
+}     
+ class PageDesignSkill extends DesignParts{
      public $SkillName;
      public $SkillExperience;
  }
+ class PageDesignSkills extends DesignParts {
+    public $Skills;
+
+    public function addSkill($Skills) {
+
+            array_push($this->Skills, $Skills);
+    }
+}     
 ?>
