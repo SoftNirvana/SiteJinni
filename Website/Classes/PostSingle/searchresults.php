@@ -30,26 +30,136 @@
         <script src="/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/vendor/twbs/bootstrap/dist/js/jquery.js"></script>
         <script src="/js/sitejinnijs.js"></script>
+        <style type="text/css">
+            .collage {                
+                float: none;
+                position: relative;
+                padding: 1px;
+            }
+            
+            .collage > div {
+                position: absolute;
+                margin: 1px;
+                width: 50%;
+                height: 50%;
+                border: white 2px solid;
+                -webkit-box-shadow: 2px 2px 0px 0px;
+                box-shadow: 2px 2px 0px 0px;
+            }
+            
+            .collage > .collage-left {
+                left: 0;
+            }
+            
+            .collage > .collage-center {
+                left: 25%;
+                top: 25%;
+                z-index: 100;
+            }
+            
+            .collage > .collage-right {
+                left: 50%;
+            }
+            
+            .collage > .collage-bottom {
+                top: 50%;
+            }
+            
+            .collage > .collage-top {
+                top: 0;
+            }
+            
+            .collage > .collage-vertical {
+                height: 100%;
+            }
+            .collage > .collage-horizontal {
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
         <?php
+            $clnt_arr = array();
+            $searchparam = "";
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if(isset($_POST["searchsubmit"])) {
                     $searchparam = $_POST["searchparams"];
                     $params = str_getcsv($searchparam, " ");
+                    
                     $clnts = Client::GetAllClients();
-                    foreach ($clnts as $key => $clientitem) {
-                        $clientitem = new Client($cid, $cname, $ccnumber1, $ccnumber2, $caddl1, $caddl2, $caddl3, $ccity, $czipcd, $cmailadd, $cmainURL, $cnumserv, $cusrid);
+                    
+                    foreach ($clnts as $key => $clientitem) {                        
                         $descfile = "../../docroots/userdocroots/" . $clientitem->clientname . "/docroot/SiteJinni.txt";
                         if(file_exists($descfile)) {
-                            $desc = file_get_contents($descfile);
-                            $posarr = array();
+                            $desc = file_get_contents($descfile);   
+                            $strsize = strlen($desc);
                             if($params != NULL && count($params)) {
-                                foreach ($params as $key => $param) {
-                                    $pos = strpos($desc, $param);
-                                    array_push($posarr, $pos);
+                                $paramcount = count($params);                                
+                                $currentidx = 0;
+                                $lastidx = -1;
+                                $lastpos = 0;                                
+                                $curpos = 0;
+                                $totscore = 0;
+                                $posarr = array();
+                                for($i=0;$i<$paramcount;$i++) {
+                                    $arrPos = array();
+                                    $lastpos = 0;
+                                    while($curpos = strpos($desc, $params[$i], $lastpos)) {
+                                        array_push($arrPos, $curpos);
+                                        $lastpos = $curpos + 1;
+                                    }
+                                    array_push($posarr, $arrPos);
+                                    
+                                }                 
+                                $findscore = 0;
+                                $orderscore = 0;
+                                $distancescore = 0;
+                                if($posarr != NULL && count($posarr)>0) {
+                                    for ($j = 0;$j<count($posarr);$j+=1) {
+                                        $arpos = $posarr[$j];
+                                        if($arpos != NULL && count($arpos)>0) {
+                                            $findscore += 1 * count($arpos);
+                                            $addordscr = 0;
+                                            $adddistscr = 0;
+                                            if(count($posarr)>=$j+2) {
+                                                for($k =0; $k < count($posarr[$j]); $k++) {
+                                                    if($posarr[$j + 1] != NULL && count($posarr[$j + 1]) > 0) {
+                                                        $mindiff = abs($posarr[$j + 1][0] - $posarr[$j][$k]);
+                                                        for($l = 0; $l < count($posarr[$j + 1]); $l++) {
+                                                            $diff = $posarr[$j + 1][$l] - $posarr[$j][$k];
+                                                            if($diff > 0)
+                                                                $addordscr += 2;
+                                                            else
+                                                                $addordscr -= 2;
+
+                                                            $diff = abs($diff);
+
+                                                            if($diff < $mindiff)
+                                                                $mindiff = $diff;
+
+                                                            $adddistscr = $strsize/$mindiff;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            $orderscore += $addordscr;
+                                            $distancescore += $adddistscr;
+                                            
+                                            echo '<br>';
+                                        }
+                                    }                                    
+                                }    
+                                $totscore = $findscore + $orderscore + $distancescore;
+                                array_push($clnt_arr, [$clientitem, $totscore]);                                
+                            }
+                            for($first = 0;$first < count($clnt_arr); $first++) {
+                                for($second = $first + 1; $second < count($clnt_arr); $second ++) {
+                                    if($clnt_arr[$first][1]<$clnt_arr[$second][1]) {
+                                        $temp = $clnt_arr[$first];
+                                        $clnt_arr[$first] = $clnt_arr[$second];
+                                        $clnt_arr[$second] = $clnt_arr[$first];
+                                    }
                                 }
-                                
                             }
                         }
                     }
@@ -80,69 +190,61 @@
                     </div>
                 </div>
             </form>
+            
             <div class="container">
                 <hgroup class="mb20">
                     <h1>Search Results</h1>
-                    <h2 class="lead"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Lorem</strong></h2>								
+                    <h2 class="lead"><strong class="text-danger"><?php echo count($clnt_arr); ?></strong> results were found for the search for <strong class="text-danger"><?php echo $searchparam; ?></strong></h2>								
                 </hgroup>
 
                 <section class="col-xs-12 col-sm-6 col-md-12">
-                    <article class="search-result row">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                                <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/people" alt="Lorem ipsum" /></a>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-2">
-                                <ul class="meta-search">
-                                        <li><i class="glyphicon glyphicon-calendar"></i> <span>02/15/2014</span></li>
-                                        <li><i class="glyphicon glyphicon-time"></i> <span>4:28 pm</span></li>
-                                        <li><i class="glyphicon glyphicon-tags"></i> <span>People</span></li>
-                                </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                            <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
-                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-                        </div>
-                        <span class="clearfix borda"></span>
-                    </article>
+                    <?php 
+                        foreach ($clnt_arr as $key => $value) {
 
-                    <article class="search-result row">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                            <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/food" alt="Lorem ipsum" /></a>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-2">
-                            <ul class="meta-search">
-                                <li><i class="glyphicon glyphicon-calendar"></i> <span>02/13/2014</span></li>
-                                <li><i class="glyphicon glyphicon-time"></i> <span>8:32 pm</span></li>
-                                <li><i class="glyphicon glyphicon-tags"></i> <span>Food</span></li>
-                            </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-7">
-                            <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
-                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-                        </div>
-                        <span class="clearfix borda"></span>
-                    </article>
-
-                    <article class="search-result row">
-                        <div class="col-xs-12 col-sm-12 col-md-3">
-                                <a href="#" title="Lorem ipsum" class="thumbnail"><img src="http://lorempixel.com/250/140/sports" alt="Lorem ipsum" /></a>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-2">
-                                <ul class="meta-search">
-                                        <li><i class="glyphicon glyphicon-calendar"></i> <span>01/11/2014</span></li>
-                                        <li><i class="glyphicon glyphicon-time"></i> <span>10:13 am</span></li>
-                                        <li><i class="glyphicon glyphicon-tags"></i> <span>Sport</span></li>
-                                </ul>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-7">
-                            <h3><a href="#" title="">Voluptatem, exercitationem, suscipit, distinctio</a></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
-                            <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
-                        </div>
-                        <span class="clearfix border"></span>
-                    </article>			
+                            echo '<article class="search-result row">
+                                    <div class="col-xs-12 col-sm-12 col-md-2">
+                                        <a href="'.$value[0]->clientmainURL.'" title="'.$value[0]->clientname.'" class="thumbnail" style="height: 150px; width: auto; border: none;">
+                                            <div class="collage" style="height: 100%; width: 100%;">
+                                                <div class="collage-left" >
+                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                </div>                
+                                                <div class="collage-center" >
+                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                </div>
+                                                <div class="collage-bottom collage-horizontal" >
+                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-3">
+                                            <ul class="meta-search">
+                                                <li>' . 
+                                                    '<i class="glyphicon glyphicon-home">' . 
+                                                    '</i>' . 
+                                                    '<span>' . 
+                                                        '<div>' . $value[0]->clientaddressline1 . 
+                                                            '<p>' . $value[0]->clientaddressline2 . 
+                                                            '<p>' . $value[0]->clientaddressline3 . 
+                                                            '<p>' . $value[0]->clientcity . ' - ' . $value[0]->clientzipcode . 
+                                                        '</div>' . 
+                                                    '</span>' . 
+                                                '</li>
+                                                <li><i class="glyphicon glyphicon-envelope"></i> <span>' . $value[0]->clientmailaddress . '</span></li>
+                                                <li><i class="glyphicon glyphicon-phone"></i> <span>' . $value[0]->clientcontactnumber1 . ' / ' . $value[0]->clientcontactnumber2 . '</span></li>
+                                            </ul>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+                                        <h3><a href="#" title="">' . $value[0]->clientname . '</a></h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
+                                        <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                                    </div>
+                                    <span class="clearfix borda"></span>
+                                </article>';
+                        }
+                    
+                    ?>
+                    		
                 </section>
             </div>
         </div>
