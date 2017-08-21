@@ -35,5 +35,6 @@ for filename in os.listdir(path):
             searchdata = filename + ";\n" + strdata;
             descfile.write(searchdata)
             descfile.close()
+            strdata = "-"
 
 print "done"
