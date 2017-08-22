@@ -1,0 +1,34 @@
+softnirvana;
+-;
+documentfiles/4276957_REPAYMENT.pdf;
+Please download the brochure here;
+Brochure;
+mainimages/commercial-bg-1.jpeg;
+mainimages/commercial-bg-3.jpeg;
+-95.677068;
+37.0625;
+<p>Project related to car</p>
+;
+projectimages/business-1012761_1920.jpg;
+;
+Project Car;
+37.0625;
+8793259479;
+A14-1001, Sparklet, Megapolis, Hinjewadi Phase III Pune - 411057;
+-95.677068;
+home@sitejinni.com;
+amenityimages/austin-1935172_1920.jpg;
+<p>Car pickup and drop service</p>
+
+<p>We provide car pickup and drop service</p>
+;
+aboutfile/automobiles-1869873_1920.jpg;
+<p>Rehabilitation Service</p>
+
+<p>We provide various rehabilitation services for drug addicted cars</p>
+;
+8793259479;
+home;
+ Hinjewadi Phase III Pune - 411057;
+A14-1001, Sparklet, Megapolis;
+<p>My Website</p>

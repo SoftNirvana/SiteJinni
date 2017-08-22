@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     
     $IsOpenFromSite=false;
@@ -42,6 +41,7 @@
     $isedit=true;
     $IsOpenFromSite=true;
 ?>
+<!DOCTYPE html>
 <html class="no-js" lang="en"> 
 <head>
 

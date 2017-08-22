@@ -1,0 +1,21 @@
+home;
+-;
+documentfiles/4276957_WELCOME_LETTER.pdf;
+Please check the price list of our services and products;
+Price List;
+mainimages/commercial-bg-1.jpeg;
+mainimages/commercial-bg-3.jpeg;
+-95.677068;
+37.0625;
+37.0625;
+8793259479;
+A14-1001, Sparklet, Megapolis, Hinjewadi Phase III Pune - 411057;
+-95.677068;
+home@sitejinni.com;
+amenityimages/car-engine-1669760_1920.jpg;
+<p>Car Engine Repair</p><p>We provide car engine repair service.</p>;
+<p>8793259479</p>;
+home;
+Hinjewadi Phase III Pune - 411057;
+<p>A14-1001, Sparklet, Megapolis</p>;
+<p>My Website</p>
