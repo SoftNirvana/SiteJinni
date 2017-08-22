@@ -60,14 +60,14 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../Images/business-1012761_1920.jpg) no-repeat center center;
+    background-color: whitesmoke;
     z-index: -1;
-    opacity: .5;
+    opacity: 1;
 }
 
 .intro-message {
     position: relative;
-    padding-top: 12%;
+    padding-top: 9%;
     padding-bottom: 28%;
 }
 
@@ -78,7 +78,7 @@ h6 {
 }
 
 .intro-divider {
-    width: 400px;
+    width: 100%;
     border-top: 1px solid #f8f8f8;
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
