@@ -88,7 +88,7 @@
                     
                     $clnts = Client::GetAllClients();
                     
-                    foreach ($clnts as $key => $clientitem) {                        
+                    foreach ($clnts as $key => $clientitem) {                         
                         $descfile = "../../docroots/userdocroots/" . $clientitem->clientname . "/docroot/SiteJinni.txt";
                         if(file_exists($descfile)) {
                             $desc = file_get_contents($descfile);   
@@ -200,19 +200,28 @@
                 <section class="col-xs-12 col-sm-6 col-md-12">
                     <?php 
                         foreach ($clnt_arr as $key => $value) {
-
+                            $descdir = "../../docroots/userdocroots/" . $value[0]->clientname . "/docroot/mainimages/";
+                            $images = scandir($descdir);
+                            $actualimages = array();
+                            for($cntimg = 0;$cntimg < 7; $cntimg++) {
+                                $idx = $cntimg % count($images);
+                                if($images[$idx] != '.' && $images[$idx] != '..') {
+                                    array_push($actualimages, $images[$idx]);
+                                }
+                            }
+                            
                             echo '<article class="search-result row">
                                     <div class="col-xs-12 col-sm-12 col-md-2">
-                                        <a href="'.$value[0]->clientmainURL.'" title="'.$value[0]->clientname.'" class="thumbnail" style="height: 150px; width: auto; border: none;">
+                                        <a href="http://'.$value[0]->clientmainURL.'" title="'.$value[0]->clientname.'" class="thumbnail" style="height: 150px; width: auto; border: none;">
                                             <div class="collage" style="height: 100%; width: 100%;">
                                                 <div class="collage-left" >
-                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                    <img src="'.'../../docroots/userdocroots/' . $value[0]->clientname . '/docroot/mainimages/'.$actualimages[0].'" style="height: 100%; width: 100%" alt="Lorem ipsum" />
                                                 </div>                
                                                 <div class="collage-center" >
-                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                    <img src="'.'../../docroots/userdocroots/' . $value[0]->clientname . '/docroot/mainimages/'.$actualimages[1].'" style="height: 100%; width: 100%" alt="Lorem ipsum" />
                                                 </div>
-                                                <div class="collage-bottom collage-horizontal" >
-                                                    <img src="http://lorempixel.com/250/140/people" style="height: 100%; width: 100%" alt="Lorem ipsum" />
+                                                <div class="collage-bottom collage-right" >
+                                                    <img src="'.'../../docroots/userdocroots/' . $value[0]->clientname . '/docroot/mainimages/'.$actualimages[2].'" style="height: 100%; width: 100%" alt="Lorem ipsum" />
                                                 </div>
                                             </div>
                                         </a>
@@ -235,7 +244,7 @@
                                             </ul>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                                        <h3><a href="#" title="">' . $value[0]->clientname . '</a></h3>
+                                        <h3><a  href="http://'.$value[0]->clientmainURL.'"  title="">' . $value[0]->clientname . '</a></h3>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
                                         <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
                                     </div>
