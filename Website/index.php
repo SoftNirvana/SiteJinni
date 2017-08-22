@@ -108,7 +108,7 @@ and open the template in the editor.
                         <div class="col-lg-12 text-center">
                             <hr class="intro-divider">
                         </div>
-                        <div class="col-lg-12 text-center" style="margin-top: 10%">
+                        <div class="col-lg-12 text-center" style="margin-top: 5%">
                             <div type="button" class="btn btn-info btn-lg" style="right: 50%;background-color: transparent; border-color: transparent; padding: 4px">
                                 <p>
                                     <a href="microsite/selection.php">
