@@ -82,28 +82,21 @@ and open the template in the editor.
 
     <!-- Header -->
     <a name="about"></a>
-    <div class="intro-header">
+    <div class="intro-header" style="height: 100%">
         <div class="container">            
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1 style="color: crimson">Micro Market CMS</h1>
-                        <h3 style="color: crimson">Design your own micro-site in the blink of an eye</h3>
-                        <hr class="intro-divider">
-                        <div type="button" class="btn btn-info btn-lg" style="right: 50%;background-color: transparent; border-color: transparent; padding: 4px">
-                            <a href="microsite/selection.php">
-                                <div class="row" style="margin: 0px; padding: 0px">
-                                    <div class="thumbnail show text-center"  style="margin: 0px; padding: 0px; background-color: transparent; border-color: transparent">
-                                            <img  src="Images/jinnilamp.png" style="height: 100px; width: 150px; background-color: transparent; border-color: transparent"/>
-                                    </div>                                
-                                </div>
-                                <div class="row" style="padding: 0px">
-                                    <h4 style="color: black; margin: 0px">Build Webste</h4>
-                                </div>
-                            </a>
-                            <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam">
-                                <div class="row input-group" id="adv-search">
-                                    <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites" />
+                <div class="col-lg-12" style="top: 0;">
+                    <div class="intro-message" style="padding: 0">
+                        <div style='opacity: 1; position: relative' class="col-lg-11 col-lg-offset-1">
+                            <img src='Images/site_logo_B.png' style="height: 80%; width: 80%; left: 10%"/>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <hr class="intro-divider">
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam" >
+                                <div class="row input-group" id="adv-search"   style="box-shadow: 0 5px 5px 0 rgba(0,0,0,0.16),0 0 0 2px rgba(0,0,0,0.08);">
+                                    <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites"/>
                                     <div class="input-group-btn">
                                         <div class="btn-group" role="group">
                                             <button type="submit" name="searchsubmit" class="btn btn-primary" value="Search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -112,15 +105,31 @@ and open the template in the editor.
                                 </div>
                             </form>
                         </div>
-                        
+                        <div class="col-lg-12 text-center">
+                            <hr class="intro-divider">
+                        </div>
+                        <div class="col-lg-12 text-center" style="margin-top: 10%">
+                            <div type="button" class="btn btn-info btn-lg" style="right: 50%;background-color: transparent; border-color: transparent; padding: 4px">
+                                <p>
+                                    <a href="microsite/selection.php">
+                                        <div class="row" style="margin: 0px; padding: 0px">
+                                            <div class="thumbnail show text-center"  style="margin: 0px; padding: 0px; background-color: transparent; border-color: transparent">
+                                                <img  src="Images/jinnilamp.png" style="height: 100px; width: 150px; background-color: transparent; border-color: transparent"/>
+                                            </div>                                
+                                        </div>
+                                        <div class="row" style="padding: 0px">
+                                            <h4 style="color: orange; margin: 0px">Build your Website</h4>
+                                        </div>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
             </div>
 
         </div>
-        <!-- /.container -->
-
     </div>
     <hr>
     <section id="services">
@@ -133,33 +142,29 @@ and open the template in the editor.
             </div>
             <div class="row text-center">
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-1', 'servicedetails');">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    <span style="height: 180px; width: 180px">
+                        <img src="Images/site-jini-icon-1.jpg" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Free Microsite</h4>
                     <p class="text-muted">Setup your free website</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-2', 'servicedetails');">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
+                    <span style="height: 180px; width: 180px">
+                        <img src="Images/site-jini-icon-2.jpg" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Domain</h4>
                     <p class="text-muted">Get a customized domain</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-3', 'servicedetails');">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    <span  style="height: 180px; width: 180px">
+                        <img src="Images/site-jini-icon-3.jpg" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Digimart</h4>
                     <p class="text-muted">Increase the share of visitors to your site</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-4', 'servicedetails');">
-                    <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                    <span style="height: 180px; width: 180px">
+                        <img src="Images/site-jini-icon-3.jpg" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Website Design</h4>
                     <p class="text-muted">Get a customized website designed with functionalities and all</p>
@@ -171,15 +176,12 @@ and open the template in the editor.
         <div class="row setup-content step activeStepInfo" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <a href="microsite/selection.php">
+                    <a href="microsite/selection.php" style="color: darkgray">
                         <h1>Free Microsite</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
                         <div class="col-lg-offset-4 col-lg-1">
-                            <span class="fa-stack fa-2x">
-                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                            </span>
+                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
                         </div>
                         <div class="text-justify col-lg-3">
                             <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
@@ -192,15 +194,12 @@ and open the template in the editor.
         <div class="row setup-content step hiddenStepInfo" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <a href="domain/selection.php">
+                    <a href="domain/selection.php" style="color: darkgray">
                         <h1>Domain Service</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
                         <div class="col-lg-offset-4 col-lg-1">
-                            <span class="fa-stack fa-2x">
-                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
-                            </span>
+                            <img src="Images/site-jini-icon-2.jpg" style="height: 100%; width: 100%"/>
                         </div>
                         <div class="text-justify col-lg-3">
                             <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
@@ -212,15 +211,12 @@ and open the template in the editor.
         <div class="row setup-content step hiddenStepInfo" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <a href="digimart/selection.php">
+                    <a href="digimart/selection.php" style="color: darkgray">
                         <h1>Digital Marketing</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
                         <div class="col-lg-offset-4 col-lg-1">
-                            <span class="fa-stack fa-2x">
-                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                            </span>
+                            <img src="Images/site-jini-icon-3.jpg" style="height: 100%; width: 100%"/>
                         </div>
                         <div class="text-justify col-lg-3">
                             <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
@@ -233,15 +229,12 @@ and open the template in the editor.
         <div class="row setup-content step hiddenStepInfo" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <a href="microsite/selection.php">
+                    <a href="microsite/selection.php" style="color: darkgray">
                         <h1>Website Design</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
                         <div class="col-lg-offset-4 col-lg-1">
-                            <span class="fa-stack fa-2x">
-                                <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-                            </span>
+                            <img src="Images/site-jini-icon-4.jpg" style="height: 100%; width: 100%"/>
                         </div>
                         <div class="text-justify col-lg-3">
                             <p>Greedy for more?</p>

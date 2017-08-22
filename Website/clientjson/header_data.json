@@ -20,7 +20,22 @@
     "Projects": {
       "Projects": [],
       "PartName": [ ]
+    },
+    "Educations": {
+      "Educations": [],
+      "PartName": [ ]
+    },
+    "WorkExperiences": {
+      "WorkExperiences": [],
+      "PartName": [ ]
+    },
+    "Skills": {
+      "Skills": [],
+      "PartName": [ ],
+      "SkillDesc": "Describe your skillset here" 
     }
   },
+  
   "PartName": "FullPage"
+  
 }
