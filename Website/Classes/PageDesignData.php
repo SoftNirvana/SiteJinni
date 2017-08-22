@@ -147,11 +147,11 @@ class PageDesignEducations extends DesignParts {
 }     
  class PageDesignSkill extends DesignParts{
      public $SkillName;
-     public $SkillExperience;
+     public $SkillExpInPercent;
  }
  class PageDesignSkills extends DesignParts {
     public $Skills;
-
+    public $SkillDesc;
     public function addSkill($Skills) {
 
             array_push($this->Skills, $Skills);

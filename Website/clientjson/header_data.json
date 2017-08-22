@@ -31,7 +31,8 @@
     },
     "Skills": {
       "Skills": [],
-      "PartName": [ ]
+      "PartName": [ ],
+      "SkillDesc": "Describe your skillset here" 
     }
   },
   

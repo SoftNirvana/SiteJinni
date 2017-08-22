@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     
     $IsOpenFromSite=false;
@@ -42,6 +41,7 @@
     $isedit=true;
     $IsOpenFromSite=true;
 ?>
+<!DOCTYPE html>
 <html class="no-js" lang="en"> 
 <head>
 
@@ -241,16 +241,19 @@
     $objSkills->Skills=array();
     // $skkey4 $skvalue4 $skkeyTemp3 $skvalueTemp3 $skkeyTemp4 $skvalueTemp4
     foreach ($json_a["allParts"]["Skills"] as $skkey4 => $skvalue4) {
-    $sks_temp = array();
-    foreach ($skvalue4 as $skkeyTemp3 => $skvalueTemp3) {
-    $sk_temp = new PageDesignSkill("Skill");
-    foreach($skvalueTemp3 as $skkeyTemp4 => $skvalueTemp4) {
-    $sk_temp->{$skkeyTemp4} = $skvalueTemp4;
+        $sks_temp = array();
+        if(is_array($skvalue4)) {
+            foreach ($skvalue4 as $skkeyTemp3 => $skvalueTemp3) {
+                $sk_temp = new PageDesignSkill("Skill");
+                foreach($skvalueTemp3 as $skkeyTemp4 => $skvalueTemp4) {
+                $sk_temp->{$skkeyTemp4} = $skvalueTemp4;
+                }
+            }
+            array_push($sks_temp,$sk_temp);
+        }
+        $objSkills->{$skkey4} = $sks_temp;   
     }
-    array_push($sks_temp,$sk_temp);
-    }
-    $objSkills->{$skkey4} = $sks_temp;
-    }
+     $objSkills->SkillDesc="";
     //---------------------------------------------------------------
 
     ///---------------------------------------------------------------
@@ -305,32 +308,15 @@
     }
     //----------------------------------------------------------------------------------------
     }
-
+ 
     ?>
    <!-- Header
    ================================================== -->
-   <header id="home">
-
-      <nav id="nav-wrap">
-
-         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
-	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
-
-         <ul id="nav" class="nav">
-            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
-            <li><a class="smoothscroll" href="#about">About</a></li>
-	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
-            <li><a class="smoothscroll" href="#portfolio">Works</a></li>
-            <li><a class="smoothscroll" href="#testimonials">Testimonials</a></li>
-            <li><a class="smoothscroll" href="#contact">Contact</a></li>
-         </ul> <!-- end #nav -->
-
-      </nav> <!-- end #nav-wrap -->
-
-        <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
             <div class="container topnav container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <?php
+                 
                     if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))
                     {
                         echo '<div class="navbar-header">                
@@ -348,32 +334,45 @@
                 ?>
                 <!--<DIV id="sitejinninavbar"></DIV>-->
                <?php 
+             
                     if(($isedit==true)&&($IsOpenFromSite==true)){
                          include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                         
                     }
 
                ?>
             </div>
             <!-- /.container -->
         </nav>
+   <header id="home">
+ 
+      <nav id="nav-wrap">
+
+         <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+         <ul id="nav" class="nav">
+            <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
+            <li><a class="smoothscroll" href="#about">About</a></li>
+	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
+            <li><a class="smoothscroll" href="#portfolio">Works</a></li>
+            <li><a class="smoothscroll" href="#testimonials">Testimonials</a></li>
+            <li><a class="smoothscroll" href="#contact">Contact</a></li>
+         </ul> <!-- end #nav -->
+
+      </nav> <!-- end #nav-wrap -->
+
+       
       
       
       <div class="row banner">
          <div class="banner-text">
-            <h1 class="responsive-headline">I'm Vikas.</h1>
-            <h3>I'm a Vikas based <span>graphic designer</span>, <span>illustrator</span> and <span>webdesigner</span> creating awesome and
-            effective visual identities for companies of all sizes around the globe. Let's <a class="smoothscroll" href="#about">start scrolling</a>
-            and learn more <a class="smoothscroll" href="#about">about me</a>.</h3>
-            <hr />
-            <ul class="social">
-               <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-               <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-               <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-               <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-               <li><a href="#"><i class="fa fa-skype"></i></a></li>
-            </ul>
+             <h1 class="responsive-headline"> 
+                 <div id="Header_Header" class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" >
+                 <?php echo $pageDesign->allParts['Header']->{'Header'}; ?></div> </h1>
+               <hr />
+               <div id="Header_CompanyName" class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" >
+                  <?php echo $pageDesign->allParts['Header']->CompanyName; ?></div>
          </div>
       </div>
 
@@ -399,31 +398,31 @@
          <div class="nine columns main-col">
 
             <h2>About Me</h2>
-            <p><div id="About_AboutDescription"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['About']->{'AboutDescription'}; ?></div>
+            <p><div id="About_AboutDescription"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" >
+                <?php echo $pageDesign->allParts['About']->{'AboutDescription'}; ?></div>
             </p>
 
             <div class="row">
 
                <div class="columns contact-details">
 
-                  <h2>Contact Details</h2>
-                  <p class="address">
-						   <span>Jonathan Doe</span><br>
-						   <span>1600 Amphitheatre Parkway<br>
-						         Mountain View, CA 94043 US
-                     </span><br>
-						   <span>(123)456-7890</span><br>
-                     <span>anyone@website.com</span>
-					   </p>
-
+                    <h2>Contact Details</h2>
+                    <p>
+                            <div id="CompanyLocation_CompanyAddress" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>"> 
+                               <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyAddress'}; ?></div>
+                            <div id="CompanyLocation_CompanyNumber" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>">	 
+                               <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyNumber'}; ?></div>   
+                            <div id="CompanyLocation_CompanyEmail" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>">	 
+                               <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyEmail'}; ?></div>   
+                     </p>			   
                </div>
-
+<!--
                <div class="columns download">
                   <p>
                      <a href="#" class="button"><i class="fa fa-download"></i>Download Resume</a>
                   </p>
                </div>
-
+-->
             </div> <!-- end row -->
 
          </div> <!-- end .main-col -->
@@ -447,45 +446,22 @@
 
          <div class="nine columns main-col">
 
-            <div class="row item">
-
-               <div class="twelve columns">
-               <h3> <div id="Edu_UniversityName"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'UniversityName'}; ?></div>
-                  University of Life</h3>
-                 <div id="Edu_Degree"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'Degree'}; ?>
-                   <p class="info">Master in Graphic Design <span>&bull;</span></p></div> 
-                   <div id="Edu_YearOfPassing"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'YearOfPassing'}; ?>
-                   <em class="date">April 2007</em>
-</div>
-                 <div id="Edu_Info"class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Educations']->{'Info'}; ?>
-                      
-                   <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                  ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                  Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Nullam dictum felis eu pede mollis pretium.
-                  </p>
-                </div>  
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>School of Cool Designers</h3>
-                  <p class="info">B.A. Degree in Graphic Design <span>&bull;</span> <em class="date">March 2003</em></p>
-
-                  <p>
-                  This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
-                  Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem
-                  nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan
-                  ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat
-                  </p>
-
-               </div>
-
+             <?php 
+             $cnt = 0;
+                foreach ($pageDesign->allParts['Educations']->Educations as $key => $edu) {
+                    echo '<div class="row item">
+                            <div class="twelve columns">
+                            <h3> <div id="Educations_Educations_'.$cnt.'_UniversityName"class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') .'" >' . $edu->{'UniversityName'} . '</div> </h3>
+                              <div id="Educations_Educations_'.$cnt.'_Degree"class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $edu->{'Degree'} . '</div> 
+                                <div id="Educations_Educations_'.$cnt.'_YearOfPassing"class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $edu->{'YearOfPassing'} . '</div>
+                              <div id="Educations_Educations_'.$cnt.'_Info"class="brand '.(($isedit == TRUE) ? 'texteditor' : ' '). '" >' . $edu->{'Info'} .'</div>  
+                             </div>
+                          </div> <!-- item end -->';
+                    $cnt++;
+                }
+            
+            ?>
+          
             </div> <!-- item end -->
 
          </div> <!-- main-col end -->
@@ -503,42 +479,25 @@
 
          <div class="nine columns main-col">
 
-            <div class="row item">
 
-               <div class="twelve columns">
-
-                  <h3>Awesome Design Studio</h3>
-                  <p class="info">Senior UX Designer <span>&bull;</span> <em class="date">March 2010 - Present</em></p>
-
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                  Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                  ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
-                  Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. Nullam dictum felis eu pede mollis pretium.
-                  </p>
-
-               </div>
-
-            </div> <!-- item end -->
-
-            <div class="row item">
-
-               <div class="twelve columns">
-
-                  <h3>Super Cool Studio</h3>
-                  <p class="info">UX Designer <span>&bull;</span> <em class="date">March 2007 - February 2010</em></p>
-
-                  <p>
-                  This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
-                  Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem
-                  nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan
-                  ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non  mauris vitae erat
-                  </p>
-
-               </div>
-
-            </div> <!-- item end -->
-
+            <?php 
+                $cnt = 0;
+                foreach ($pageDesign->allParts['WorkExperiences']->WorkExperiences as $key => $woEx) {
+                    echo '<div class="row item">
+                            <div class="twelve columns">
+                            <h3> <div id="WorkExperiences_WorkExperiences_'.$cnt.'_CompanyName" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') .'" >' . $woEx->{'CompanyName'} . '</div> </h3>
+                              <span>  
+                              <div id="WorkExperiences_WorkExperiences_'.$cnt.'_Designation" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $woEx->{'Designation'} . '</div> 
+                              <div id="WorkExperiences_WorkExperiences_'.$cnt.'_Experience" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $woEx->{'Experience'} . '</div>
+                              </span>    
+                              <div id="WorkExperiences_WorkExperiences_'.$cnt.'_Desc" class="brand '.(($isedit == TRUE) ? 'texteditor' : ' '). '" >' . $woEx->{'Description'} .'</div>  
+                             </div>
+                          </div> <!-- item end -->';
+                    $cnt ++;
+                }
+            
+            ?> 
+            
          </div> <!-- main-col end -->
 
       </div> <!-- End Work -->
@@ -552,28 +511,36 @@
             <h1><span>Skills</span></h1>
          </div>
 
-         <div class="nine columns main-col">
+        <div class="nine columns main-col">
 
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
-            eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam
-            voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-            voluptatem sequi nesciunt.
-            </p>
+                <p>
+                    <div id="Skills_SkillDesc" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>">	 
+                       <?php echo $pageDesign->allParts['Skills']->{'SkillDesc'};?>
+                    </div>  
+                </p>
 
-				<div class="bars">
+                <div class="bars">
 
-				   <ul class="skills">
-					   <li><span class="bar-expand photoshop"></span><em>Photoshop</em></li>
-                  <li><span class="bar-expand illustrator"></span><em>Illustrator</em></li>
-						<li><span class="bar-expand wordpress"></span><em>Wordpress</em></li>
-						<li><span class="bar-expand css"></span><em>CSS</em></li>
-						<li><span class="bar-expand html5"></span><em>HTML5</em></li>
-                  <li><span class="bar-expand jquery"></span><em>jQuery</em></li>
-					</ul>
+                    <ul class="skills">
 
-				</div><!-- end skill-bars -->
+                    <?php 
+                        $cnt = 0;
+                        foreach ($pageDesign->allParts['Skills']->Skills as $key => $skill) {
+                            echo '<li><span class="bar-expand allSkill" style="width:' . $skill->{'SkillExpInPercent'} .';"></span><em>'
+                                 . '<div id="Skills_Skills_'.$cnt.'_SkillName" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillName'} . '</div> </em></li>';
+                            $cnt++;
+                        }
+                    ?>
+                <!--    <li><span class="bar-expand photoshop" style="width: 40%;"></span><em>Photoshop</em></li>
+                        <li><span class="bar-expand illustrator"></span><em>Illustrator</em></li>
+                        <li><span class="bar-expand wordpress"></span><em>Wordpress</em></li>
+                        <li><span class="bar-expand css"></span><em>CSS</em></li>
+                        <li><span class="bar-expand html5"></span><em>HTML5</em></li>
+                        <li><span class="bar-expand jquery"></span><em>jQuery</em></li>-->
+                    </ul>
 
-			</div> <!-- main-col end -->
+                </div><!-- end skill-bars -->
+        </div> <!-- main-col end -->
 
       </div> <!-- End skills -->
 
@@ -1039,15 +1006,16 @@
 
                <div class="widget widget_contact">
 
-					   <h4>Address and Phone</h4>
-					   <p class="address">
-						   Jonathan Doe<br>
-						   1600 Amphitheatre Parkway <br>
-						   Mountain View, CA 94043 US<br>
-						   <span>(123) 456-7890</span>
-					   </p>
-
-				   </div>
+                    <h4>Address and Phone</h4>
+                        <p class="address">
+                            <div id="CompanyLocation_CompanyAddress" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>"> 
+                               <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyAddress'}; ?></div>
+                            <div id="CompanyLocation_CompanyNumber" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>">	 
+                                <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyNumber'}; ?></div>   
+                            <div id="CompanyLocation_CompanyEmail" class="brand <?php echo($isedit == TRUE) ? 'texteditor' : ' ';?>">	 
+                                <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyEmail'}; ?></div>   
+                        </p>
+                </div>
 
                <div class="widget widget_tweets">
 
