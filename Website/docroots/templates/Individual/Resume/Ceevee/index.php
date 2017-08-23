@@ -1059,7 +1059,7 @@
    <script src="js/jquery.fittext.js"></script>
    <script src="js/magnific-popup.js"></script>
    <script src="js/init.js"></script>
-   
+   <script src="js/bootstrap.min.js" type="text/javascript"></script>
  
  <script src="ckeditor/adapters/jquery.js"></script>
  <script src="ckeditor/jquery.js"></script>
