@@ -245,8 +245,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
                                         <h3><a  href="http://'.$value[0]->clientmainURL.'"  title="">' . $value[0]->clientname . '</a></h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, exercitationem, suscipit, distinctio, qui sapiente aspernatur molestiae non corporis magni sit sequi iusto debitis delectus doloremque.</p>						
-                                        <span class="plus"><a href="#" title="Lorem ipsum"><i class="glyphicon glyphicon-plus"></i></a></span>
+                                        <h3><a  href="http://'.$value[0]->clientmainURL.'"  title="">' . 'http://'.$value[0]->clientmainURL . '</a></h3>
                                     </div>
                                     <span class="clearfix borda"></span>
                                 </article>';
