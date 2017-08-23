@@ -354,7 +354,7 @@
          <ul id="nav" class="nav">
             <li class="current"><a class="smoothscroll" href="#home">Home</a></li>
             <li><a class="smoothscroll" href="#about">About</a></li>
-	         <li><a class="smoothscroll" href="#resume">Resume</a></li>
+	    <li><a class="smoothscroll" href="#resume">Resume</a></li>
             <li><a class="smoothscroll" href="#portfolio">Works</a></li>
             <li><a class="smoothscroll" href="#testimonials">Testimonials</a></li>
             <li><a class="smoothscroll" href="#contact">Contact</a></li>
@@ -362,9 +362,6 @@
 
       </nav> <!-- end #nav-wrap -->
 
-       
-      
-      
       <div class="row banner">
          <div class="banner-text">
              <h1 class="responsive-headline"> 
@@ -1016,7 +1013,7 @@
                                 <?php echo $pageDesign->allParts['CompanyLocation']->{'CompanyEmail'}; ?></div>   
                         </p>
                 </div>
-
+<!--
                <div class="widget widget_tweets">
 
                   <h4 class="widget-title">Latest Tweets</h4>
@@ -1040,8 +1037,8 @@
                      </li>
                   </ul>
 
-		         </div>
-
+		</div>
+-->
             </aside>
 
       </div>

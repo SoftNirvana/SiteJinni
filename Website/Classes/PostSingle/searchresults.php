@@ -75,6 +75,13 @@
             .collage > .collage-horizontal {
                 width: 100%;
             }
+            a {
+                color: #0000EE;
+            }
+            
+            a:visited {
+                color: purple;
+            }
         </style>
     </head>
     <body>
@@ -227,7 +234,7 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-3">
-                                            <ul class="meta-search">
+                                            <ul class="meta-search" style="color: black">
                                                 <li>' . 
                                                     '<i class="glyphicon glyphicon-home">' . 
                                                     '</i>' . 
@@ -244,8 +251,8 @@
                                             </ul>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
-                                        <h3><a  href="http://'.$value[0]->clientmainURL.'"  title="">' . $value[0]->clientname . '</a></h3>
-                                        <h3><a  href="http://'.$value[0]->clientmainURL.'"  title="">' . 'http://'.$value[0]->clientmainURL . '</a></h3>
+                                        <h2><a  href="http://'.$value[0]->clientmainURL.'"  title="' . $value[0]->clientname . '" >' . $value[0]->clientname . '</a></h2>
+                                        <h4><a  href="http://'.$value[0]->clientmainURL.'"  title="' . $value[0]->clientname . '" style="font-size: 11px; color: green">' . 'http://'.$value[0]->clientmainURL . '</a></h4>
                                     </div>
                                     <span class="clearfix borda"></span>
                                 </article>';
