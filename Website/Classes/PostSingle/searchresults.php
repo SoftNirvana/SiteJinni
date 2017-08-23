@@ -234,21 +234,21 @@
                                         </a>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-3">
-                                            <ul class="meta-search" style="color: black">
-                                                <li>' . 
-                                                    '<i class="glyphicon glyphicon-home">' . 
-                                                    '</i>' . 
-                                                    '<span>' . 
-                                                        '<div>' . $value[0]->clientaddressline1 . 
-                                                            '<p>' . $value[0]->clientaddressline2 . 
-                                                            '<p>' . $value[0]->clientaddressline3 . 
-                                                            '<p>' . $value[0]->clientcity . ' - ' . $value[0]->clientzipcode . 
-                                                        '</div>' . 
-                                                    '</span>' . 
-                                                '</li>
-                                                <li><i class="glyphicon glyphicon-envelope"></i> <span>' . $value[0]->clientmailaddress . '</span></li>
-                                                <li><i class="glyphicon glyphicon-phone"></i> <span>' . $value[0]->clientcontactnumber1 . ' / ' . $value[0]->clientcontactnumber2 . '</span></li>
-                                            </ul>
+                                        <ul class="meta-search">
+                                            <li>' . 
+                                                '<i class="glyphicon glyphicon-home">' . 
+                                                '</i>' . 
+                                                '<span>' . 
+                                                    '<div>' . $value[0]->clientaddressline1 . 
+                                                        '<p>' . $value[0]->clientaddressline2 . 
+                                                        '<p>' . $value[0]->clientaddressline3 . 
+                                                        '<p>' . $value[0]->clientcity . ' - ' . $value[0]->clientzipcode . 
+                                                    '</div>' . 
+                                                '</span>' . 
+                                            '</li>
+                                            <li><i class="glyphicon glyphicon-envelope"></i> <span>' . $value[0]->clientmailaddress . '</span></li>
+                                            <li><i class="glyphicon glyphicon-phone"></i> <span>' . $value[0]->clientcontactnumber1 . ' / ' . $value[0]->clientcontactnumber2 . '</span></li>
+                                        </ul>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
                                         <h2><a  href="http://'.$value[0]->clientmainURL.'"  title="' . $value[0]->clientname . '" >' . $value[0]->clientname . '</a></h2>
