@@ -34,12 +34,12 @@
     {
         $client = $_SESSION["client"];
     }
-    $user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
-    $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-    $isedit=true;
-    $IsOpenFromSite=true;
+   // $isedit=true;
+   // $IsOpenFromSite=true;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en"> 
@@ -313,42 +313,39 @@
     ?>
    <!-- Header
    ================================================== -->
-   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-            <div class="container topnav container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <?php
-                 
-                    if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))
-                    {
-                        echo '<div class="navbar-header">                
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navdiv">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand topnav" href="loginPage.php">Login</a>
-                            </div>';
-                        
-                         
-                    }
-                ?>
-                <!--<DIV id="sitejinninavbar"></DIV>-->
-               <?php 
-             
-                    if(($isedit==true)&&($IsOpenFromSite==true)){
-                         include( $locpath . "/htmlassets/sitejinniNavBar.php");
-                         
-                    }
-
-               ?>
-            </div>
-            <!-- /.container -->
-        </nav>
+   
+                
+               
    <header id="home">
- 
+  
       <nav id="nav-wrap">
+        <?php 
+             
+            if(($isedit==true)&&($IsOpenFromSite==true)){
+             
+                 include( $locpath . "/htmlassets/sitejinniNavBar.php");
+              
+            }
 
+        ?>
+     <!----- Install button for Template ---------->
+       
+        <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row"  style="z-index: 3">
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>      
          <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
 	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
 
@@ -362,7 +359,8 @@
          </ul> <!-- end #nav -->
 
       </nav> <!-- end #nav-wrap -->
-
+<!--<DIV id="sitejinninavbar"></DIV>-->
+               
       <div class="row banner">
          <div class="banner-text">
              <h1 class="responsive-headline"> 
