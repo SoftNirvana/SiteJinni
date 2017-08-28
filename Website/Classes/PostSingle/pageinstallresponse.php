@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //var_dump($_SESSION["installpage"]);
                 $_SESSION["purpose"] = "install";
                 echo "/loginPage.php";
-            }  else if(isset($_SESSION["client"]) && isset($_SESSION["service"])) {
+            }  elseif(isset($_SESSION["client"]) && isset($_SESSION["service"])) {
                 
                 $tempdir = $_POST["installpage"];
                 
@@ -71,18 +71,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 FunctionsClass::recurse_copy($templatedir, $clientdocrootpath);
                 copy('../../clientjson/header_data.json', $clientdocrootpath . '/header_data.json');
                 
-                $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
-                foreach ($client as $key => $value) {
-                    fwrite($sitejinnifile, $value .",");
-                }
-                fwrite($sitejinnifile, "#-:sj:-#");
-                fclose($sitejinnifile);                
+                          
                 CartFunctionsClass::AddCartItem($user, $client, $service, ["MS", "TM"]);
 
                 echo "/installDisclaimerPage.php";
             } else {
                 echo 'NIL';
             }
+        } elseif (isset($_POST["installpage"])) {
+            $client = $_SESSION["client"];
+            $user = $_SESSION["user"];
+            $service = $_SESSION["service"];
+            
+            $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
+            foreach ($client as $key => $value) {
+                fwrite($sitejinnifile, $value .",");
+            }
+            fwrite($sitejinnifile, "#-:sj:-#");
+            fclose($sitejinnifile);      
         }
         
         if(isset($_POST["gendemophrase"])) {
