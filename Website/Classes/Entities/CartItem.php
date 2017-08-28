@@ -145,6 +145,9 @@ class CartItem {
 
                         $cartit = new CartItem($row["cartitemid"],$row["cartitemname"],$row["cartid"],$row["servicetypeid"],
                                                $row["description"],$row["offerid"]);
+                } else {
+                    $conn->close();
+                    return NULL;
                 }
             }
             $conn->close();

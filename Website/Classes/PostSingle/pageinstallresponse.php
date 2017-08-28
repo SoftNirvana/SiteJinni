@@ -71,6 +71,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 FunctionsClass::recurse_copy($templatedir, $clientdocrootpath);
                 copy('../../clientjson/header_data.json', $clientdocrootpath . '/header_data.json');
                 
+                $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
+                foreach ($client as $key => $value) {
+                    fwrite($sitejinnifile, $value .",");
+                }
+                fwrite($sitejinnifile, "#-:sj:-#");
+                fclose($sitejinnifile);  
                           
                 CartFunctionsClass::AddCartItem($user, $client, $service, ["MS", "TM"]);
 
@@ -78,17 +84,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 echo 'NIL';
             }
-        } elseif (isset($_POST["installpage"])) {
+        } elseif (isset($_POST["cartchkoutfinal"])) {
             $client = $_SESSION["client"];
-            $user = $_SESSION["user"];
-            $service = $_SESSION["service"];
+            $cart = $_SESSION["cart"];
             
-            $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
-            foreach ($client as $key => $value) {
-                fwrite($sitejinnifile, $value .",");
-            }
-            fwrite($sitejinnifile, "#-:sj:-#");
-            fclose($sitejinnifile);      
+            
+            $cart->Save();
+            
+            unset($_SESSION["cart"]);
+            
+            $clientdirpath = "../../docroots/userdocroots/" . $client->clientname;
+            $clientdocrootpath = $clientdirpath . "/docroot/index.php";
+            
+            echo $clientdocrootpath;
         }
         
         if(isset($_POST["gendemophrase"])) {
