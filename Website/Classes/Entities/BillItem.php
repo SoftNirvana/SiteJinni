@@ -121,6 +121,9 @@ class BillItem {
                         $bill = new BillItem($row["itemid"],$row["itemname"],$row["cartitemid"],$row["billdate"],$row["itemqty"],
                                              $row["itemrate"],$row["itemdiscount"],$row["itemstax"],$row["itemgtax"],$row["itemtotal"],
                                              $row["itemrenewfreq"],$row["itemdescription"], $row["itemnotes"]);
+                } else {
+                    $conn->close();
+                    return NULL;;
                 }
             }
             $conn->close();

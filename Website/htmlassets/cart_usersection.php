@@ -39,7 +39,7 @@
 
             ?>
             <li class="divider"></li>
-            <li><a class="text-center disabled" href="" >Check Out Cart</a></li>
+            <li><a class="text-center" href="/CartCheckOut.php" >Check Out Cart</a></li>
         </ul>
         <!--</div> -->
     </li>
