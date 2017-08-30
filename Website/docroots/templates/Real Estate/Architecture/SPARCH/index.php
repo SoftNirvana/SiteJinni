@@ -1,5 +1,6 @@
 <?php
-  
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
+ 
     $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
     $spath = $_SERVER["REQUEST_URI"];
@@ -23,8 +24,6 @@
     require($locpath . "/PHPmailer/class.phpmailer.php"); // path to the PHPMailer class
     require($locpath . "/PHPmailer/class.smtp.php"); // path to the PHPMailer class
     
-    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
-
     $user = NULL;
     $client = NULL;
     $service = NULL;
@@ -585,6 +584,7 @@
 <BODY>
     <?php
         include($locpath . 'htmlassets/datapost.php');
+        include($locpath . 'htmlassets/visitortoclientdatapost.php');
     ?>
         
         <?php 
