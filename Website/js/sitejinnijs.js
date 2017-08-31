@@ -13,6 +13,7 @@ function addCartItem(servtype, div){
             data: {cartadd: servtype},
             success: function (response, textStatus, jqXHR) {                
                 $("#"+div).load(" #" + div);
+                window.location.reload();
             }
         });
 }
