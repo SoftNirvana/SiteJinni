@@ -64,10 +64,21 @@ class FunctionsClass {
     public static function clean_docroot($dir) { 
         if(!file_exists($dir))
             return;
+        /*
+        $dirParts = explode("/", $dir);
+        $dirName = $dirParts[$dirParts[count($dirParts)-1]];
+        if($dirName == "aboutfile" || $dirName == "amenityimages" || 
+           $dirName == "documentfiles" || $dirName == "mainimages" || 
+           $dirName == "memberfiles" || $dirName == "projectimages") {
+            
+            return;
+        }
+        */
+        
         $dir = opendir($dir); 
         
         while(false !== ( $file = readdir($dir)) ) { 
-            if (( $file != '.' ) && ( $file != '..' ) && ($file != 'header_data.json') ) { 
+            if (( $file != '.' ) && ( $file != '..' ) && ($file != 'header_data.json' || $file != 'SiteJinni.txt') ) { 
                 if(file_exists($dir . '/' . $file)) {
                     if ( is_dir($dir . '/' . $file) ) { 
                         FunctionsClass::clean_docroot($dir . '/' . $file);
