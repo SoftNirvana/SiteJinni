@@ -5,8 +5,8 @@
  */
 
 
-function addCartItem(servtype, div){
-    $.ajax({
+    function addCartItem(servtype, div){
+        $.ajax({
             type: "POST",
             url: "/Classes/PostSingle/CartAjaxPost.php",
             cache: false,
@@ -16,9 +16,13 @@ function addCartItem(servtype, div){
                 window.location.reload();
             }
         });
-}
+    }
+    
+    function gotochangetemplate() {
+        window.location.href = "/microsite/selection.php";
+    }
 
-function resetActive(event, percent, step, jumpto) {
+    function resetActive(event, percent, step, jumpto) {
         $(".progress-bar").css("width", percent + "%").attr("aria-valuenow", percent);
         $(".progress-completed").text(percent + "%");
 
@@ -52,4 +56,17 @@ function resetActive(event, percent, step, jumpto) {
     function showCurrentStepInfo(step) {        
         var id = "#" + step;
         $(id).addClass("activeStepInfo");
+    }
+    
+    function checkoutfinal(){
+        $.ajax({
+            type: "POST",
+            url: "/Classes/PostSingle/pageinstallresponse.php",
+            cache: false,
+            data: {cartchkoutfinal: true},
+            success: function (response, textStatus, jqXHR) {                
+                alert(response);
+                window.location.href = response;
+            }
+        });
     }

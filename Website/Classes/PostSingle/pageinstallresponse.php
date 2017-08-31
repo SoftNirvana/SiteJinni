@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //var_dump($_SESSION["installpage"]);
                 $_SESSION["purpose"] = "install";
                 echo "/loginPage.php";
-            }  else if(isset($_SESSION["client"]) && isset($_SESSION["service"])) {
+            }  elseif(isset($_SESSION["client"]) && isset($_SESSION["service"])) {
                 
                 $tempdir = $_POST["installpage"];
                 
@@ -76,13 +76,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     fwrite($sitejinnifile, $value .",");
                 }
                 fwrite($sitejinnifile, "#-:sj:-#");
-                fclose($sitejinnifile);                
+                fclose($sitejinnifile);  
+                          
                 CartFunctionsClass::AddCartItem($user, $client, $service, ["MS", "TM"]);
 
                 echo "/installDisclaimerPage.php";
             } else {
                 echo 'NIL';
             }
+        } elseif (isset($_POST["cartchkoutfinal"])) {
+            $client = $_SESSION["client"];
+            $cart = $_SESSION["cart"];
+            
+            
+            $cart->Save();
+            
+            unset($_SESSION["cart"]);
+            
+            $clientdirpath = "../../docroots/userdocroots/" . $client->clientname;
+            $clientdocrootpath = $clientdirpath . "/docroot/index.php";
+            
+            echo $clientdocrootpath;
         }
         
         if(isset($_POST["gendemophrase"])) {

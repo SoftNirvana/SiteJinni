@@ -34,12 +34,12 @@
     {
         $client = $_SESSION["client"];
     }
-    $user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
-    $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
+    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-    $isedit=true;
-    $IsOpenFromSite=true;
+   // $isedit=true;
+   // $IsOpenFromSite=true;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en"> 
@@ -58,6 +58,7 @@
 
 	<!-- CSS
     ================================================== -->
+   <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
    <link rel="stylesheet" href="css/default.css">
    <link rel="stylesheet" href="css/layout.css">
    <link rel="stylesheet" href="css/media-queries.css">
@@ -312,42 +313,39 @@
     ?>
    <!-- Header
    ================================================== -->
-   <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-            <div class="container topnav container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <?php
-                 
-                    if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))
-                    {
-                        echo '<div class="navbar-header">                
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navdiv">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand topnav" href="loginPage.php">Login</a>
-                            </div>';
-                        
-                         
-                    }
-                ?>
-                <!--<DIV id="sitejinninavbar"></DIV>-->
-               <?php 
-             
-                    if(($isedit==true)&&($IsOpenFromSite==true)){
-                         include( $locpath . "/htmlassets/sitejinniNavBar.php");
-                         
-                    }
-
-               ?>
-            </div>
-            <!-- /.container -->
-        </nav>
+   
+                
+               
    <header id="home">
- 
+  
       <nav id="nav-wrap">
+        <?php 
+             
+            if(($isedit==true)&&($IsOpenFromSite==true)){
+             
+                 include( $locpath . "/htmlassets/sitejinniNavBar.php");
+              
+            }
 
+        ?>
+     <!----- Install button for Template ---------->
+       
+        <?php 
+            if($IsOpenFromSite==FALSE)
+            {
+               echo '<div class="row"  style="z-index: 3">
+                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         </div>
+                         <div class="row">
+
+                         <div  style="position: fixed;top: 0;right: 45%;z-index: 2; margin: 10px">
+                               <button type="button" class="btn  btn-info " style="background-color:#ff9800 ;height: 35px; width:150px;font-weight:bold;color:black" onclick="installPage()">Install</button>
+                         </div>
+                       </div>
+                     </div>';
+            }
+              
+        ?>      
          <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
 	      <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
 
@@ -361,7 +359,8 @@
          </ul> <!-- end #nav -->
 
       </nav> <!-- end #nav-wrap -->
-
+<!--<DIV id="sitejinninavbar"></DIV>-->
+               
       <div class="row banner">
          <div class="banner-text">
              <h1 class="responsive-headline"> 
@@ -845,37 +844,7 @@
 
    <!-- Call-To-Action Section
    ================================================== -->
-   <section id="call-to-action">
-
-      <div class="row">
-
-         <div class="two columns header-col">
-
-            <h1><span>Get Hosting.</span></h1>
-
-         </div>
-
-         <div class="seven columns">
-
-            <h2><a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT">Host This Template on Dreamhost.</a></h2>
-            <p>Looking for an awesome and reliable webhosting? Try <a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT"><span>DreamHost</span></a>.
-					Get <span>$50 off</span> when you sign up with the promocode <span>STYLESHOUT</span>. 
-					<!-- Simply type	the promocode in the box labeled “Promo Code” when placing your order. --></p>
-
-         </div>
-
-         <div class="three columns action">
-
-            <a href="http://www.dreamhost.com/r.cgi?287326|STYLESHOUT" class="button">Sign Up Now</a>
-
-         </div>
-
-      </div>
-
-   </section> <!-- Call-To-Action Section End-->
-
-
-   <!-- Testimonials Section
+    <!-- Testimonials Section
    ================================================== -->
    <section id="testimonials">
 
@@ -1088,7 +1057,7 @@
    <script src="js/jquery.fittext.js"></script>
    <script src="js/magnific-popup.js"></script>
    <script src="js/init.js"></script>
-   
+   <script src="js/bootstrap.min.js" type="text/javascript"></script>
  
  <script src="ckeditor/adapters/jquery.js"></script>
  <script src="ckeditor/jquery.js"></script>

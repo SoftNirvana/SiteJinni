@@ -65,7 +65,7 @@ class Cart {
                        "cartdescription) VALUES (?,?,?,?,?)";
  
                 $query = $conn->prepare($sql);
-                $query->bind_param("ssssss", $this->cartid, $this->clientid,  $this->userid, $this->ispaid, 
+                $query->bind_param("sssss", $this->cartid, $this->clientid,  $this->userid, $this->ispaid, 
                 $this->cartdescription);
                 $result = $query->execute();
             }
@@ -142,6 +142,9 @@ class Cart {
 
                         $cart = new Cart($row["cartid"],$row["clientid"],$row["userid"],$row["ispaid"],
                                                $row["cartdescription"]);
+                } else {
+                    $conn->close();                            
+                    return NULL;
                 }
             }
             $conn->close();
