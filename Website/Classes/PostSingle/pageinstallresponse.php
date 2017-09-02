@@ -60,16 +60,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $clientdirpath = "../../docroots/userdocroots/" . $client->clientname;
                 $clientdocrootpath = $clientdirpath . "/docroot";
+                $doessiteexist = FALSE;
+                
+                if(file_exists($clientdocrootpath) && file_exists($clientdocrootpath."/header_data.json")) {
+                    $doessiteexist = TRUE;
+                }
+                
                 if (!file_exists($clientdirpath)) {
                     mkdir($clientdirpath, 0777, true);
                 }
+                
                 if (!file_exists($clientdocrootpath)) {
                     mkdir($clientdocrootpath, 0777, true);
                 }
+                        
                 FunctionsClass::clean_docroot($clientdocrootpath);
                 //var_dump($templatedir);
                 FunctionsClass::recurse_copy($templatedir, $clientdocrootpath);
-                copy('../../clientjson/header_data.json', $clientdocrootpath . '/header_data.json');
+                
+                if($doessiteexist == FALSE) {
+                    copy('../../clientjson/header_data.json', $clientdocrootpath . '/header_data.json');
+                }
                 
                 $sitejinnifile = fopen($clientdocrootpath . '/SiteJinni.txt', "a");
                 foreach ($client as $key => $value) {

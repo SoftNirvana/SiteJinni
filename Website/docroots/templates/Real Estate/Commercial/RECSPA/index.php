@@ -76,6 +76,7 @@
         <?php 
          echo '<script src="/js/sitejinnijs.js"></script> ';
         ?>
+     <script src="js/spwCustom.js" type="text/javascript"></script>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -89,12 +90,6 @@
     <LINK href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    
-    
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
     <style>
         li {
             font-family: sans-serif;
@@ -663,18 +658,8 @@
                     <div id="Header_Phonenum" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Phonenum; ?></div>
                 </h3>
                 <br>
-                <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
             </div>
-            
-            
-       <!-- <DIV class="row" id="header_div">
-            <DIV id="Header_Header" class="brand <?php echo ($isedit == TRUE) ? 'texteditor' : ' ';?>" ><?php echo $pageDesign->allParts['Header']->{'Header'}; ?></DIV>
-            <DIV class="address-bar" > 
-                <div id="Header_Address1" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Address1; ?></div>
-                <div id="Header_Address2" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> > <?php echo $pageDesign->allParts['Header']->Address2; ?></div>
-                <div id="Header_Phonenum" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Phonenum; ?></div>
-            </DIV>
-        </DIV>-->
+           
         </header>
 
         <!-- About -->
@@ -1333,9 +1318,10 @@
         // Enable map zooming with mouse scroll when the user clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/spwCustom.js" type="text/javascript"></script>
     <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
    <script src="js/textEditor.js" type="text/javascript"></script>
    <script type="text/javascript">
               CreateEditor();

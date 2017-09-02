@@ -1,6 +1,5 @@
 <?php
-    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
- 
+  
     $IsOpenFromSite=false;
     $path = $_SERVER['DOCUMENT_ROOT'];
     $spath = $_SERVER["REQUEST_URI"];
@@ -23,7 +22,7 @@
     include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     require($locpath . "/PHPmailer/class.phpmailer.php"); // path to the PHPMailer class
     require($locpath . "/PHPmailer/class.smtp.php"); // path to the PHPMailer class
-    
+    if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
     $user = NULL;
     $client = NULL;
     $service = NULL;
@@ -579,7 +578,7 @@
 
 		
     </script>
-    
+    <script src="js/spwCustom.js" type="text/javascript"></script>
 </HEAD>
 <BODY>
     <?php
@@ -662,7 +661,7 @@
                     <div id="Header_Phonenum" <?php echo ($isedit == TRUE) ? 'class="texteditor"' : ' ';?> ><?php echo $pageDesign->allParts['Header']->Phonenum; ?></div>
                 </h3>
                 <br>
-                <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+                
             </div>
             
             
@@ -1332,6 +1331,11 @@
         // Enable map zooming with mouse scroll when the user clicks the map
     $('.map').on('click', onMapClickHandler);
     </script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+    <!--<script src="js/bootstrap.js" type="text/javascript"></script>-->
+    
+    
    <script src="js/textEditor.js" type="text/javascript"></script>
    <script type="text/javascript">
               CreateEditor();

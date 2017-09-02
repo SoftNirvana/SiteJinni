@@ -15,4 +15,9 @@ Website/Images/jinnilamp.png
 Website/Images/jinnilamp.png
 Website/Images/jinnilamp.png
 /Website/docroots/userdocroots/
+<<<<<<< HEAD
+Website/docroots/userdocroots/home/docroot/header_data.json
+Website/docroots/userdocroots/home/docroot/SiteJinni.txt
+=======
 Website/Classes/DataAccess.php
+>>>>>>> 432e30ad5df7ea7fc8d4e6f9d73c6237ced086d2
