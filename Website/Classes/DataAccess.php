@@ -37,6 +37,13 @@ class DataAccess {
         //$dbname = "CMSDBMAIN";
 
         //Dev Bishwaroop1
+        //$servername = "localhost";
+        //$username = "root";
+        //$password = "170681";
+        //$port = "8889";
+        //$dbname = "CMSDBMAIN";
+
+        //Dev Bishwaroop1
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -44,11 +51,11 @@ class DataAccess {
         $dbname = "cmsdbmain";
         
         //Dev Vikas
-        //$servername = "localhost";
-        //$username = "root";
-        //$password = "";
-        //$port = "3306";
-        //$dbname = "CMSDBMAIN";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $port = "3306";
+        $dbname = "CMSDBMAIN";
         
         DataAccess::$conn = new mysqli($servername, $username, $password, $dbname, $port, "");
 
