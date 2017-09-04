@@ -83,18 +83,23 @@ and open the template in the editor.
 
     <!-- Header -->
     <a name="about"></a>
-    <div class="intro-header" style="height: 100%">
+    <div class="intro-header" style="height: 100%;padding: 0">
         <div class="container">            
             <div class="row">
-                <div class="col-lg-12" style="top: 0;">
-                    <div class="intro-message" style="padding: 0">
-                        <div style='opacity: 1; position: relative' class="col-lg-11 col-lg-offset-1">
-                            <img src='Images/site_logo_B.png' style="height: 80%; width: 80%; left: 10%"/>
-                        </div>
-                        <div class="col-lg-12 text-center">
+                <div class='col-lg-2 col-xs-2'></div>
+                <div class="col-lg-8  col-md-6 col-sm-6  col-xs-8">
+                    <div class="row">
+                    <div  style="position: absolute;  padding: 0px; ">
+                        <img src="Images/jinni-icon .png" style="width: 30%; height: 70%;right: 10% "/>
+                   </div>
+                    <div class="intro-message text-center" >
+                         <!--<div style='opacity: 1; position: relative; height: 80%; width: 80%;' class="col-lg-12 col-xs-6">
+                           <img src='Images/site_logo_B.png' style="height: 80%; width: 80%; left: 10%"/>
+                        </div>-->
+                        <div class="col-lg-6 col-lg-offset-3 col-xs-8 text-center">
                             <hr class="intro-divider">
                         </div>
-                        <div class="col-lg-12 text-center">
+                        <div class="col-lg-6 col-lg-offset-3 col-xs-8 text-center">
                             <form action="/Classes/PostSingle/searchresults.php" method="POST" name="searchparam" >
                                 <div class="row input-group" id="adv-search"   style="box-shadow: 0 5px 5px 0 rgba(0,0,0,0.16),0 0 0 2px rgba(0,0,0,0.08);">
                                     <input type="text" name="searchparams" class="form-control" placeholder="Search SiteJinni websites"/>
@@ -106,10 +111,10 @@ and open the template in the editor.
                                 </div>
                             </form>
                         </div>
-                        <div class="col-lg-12 text-center">
+                        <div class="col-lg-6 col-lg-offset-3 text-center">
                             <hr class="intro-divider">
                         </div>
-                        <div class="col-lg-12 text-center" style="margin-top: 5%">
+                        <div class="col-lg-6 col-lg-offset-3 text-center" style="margin-top: 5%">
                             <div type="button" class="btn btn-info btn-lg" style="right: 50%;background-color: transparent; border-color: transparent; padding: 4px">
                                 <p>
                                     <a href="microsite/selection.php">
@@ -126,7 +131,10 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
+                    
+                    </div>
                 </div>
+                 <div class='col-lg-2 col-xs-2'></div>
             </div>
 
         </div>
@@ -174,83 +182,92 @@ and open the template in the editor.
     </section>
     <section id="servicedetails">
         <div class="row setup-content step activeStepInfo" id="step-1">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
-                    <a href="microsite/selection.php" style="color: darkgray">
-                        <h1>Free Microsite</h1>
-                        <hr class="col-lg-offset-4 col-lg-4">
-                        <br>
-                        <!--
-                        <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
-                        </div>
-                        -->
-                        <div class="text-justify col-lg-3">
-                            <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
-                            <p>No worries, the Jinni will guide you.</p>
-                        </div>
-                    </a>
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat; background-size: 100%; padding-top: 30px; min-height: 350px">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 " style="background-color: transparent">
+                        <a href="microsite/selection.php" style="color: darkorange">
+                            <h1>Free Microsite</h1>
+                            <hr class="col-lg-12">
+                            <br>
+                            <!--
+                            <div class="col-lg-offset-4 col-lg-1">
+                                <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
+                            </div>
+                            -->
+                            <div class="text-justify col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
+                                <p>No worries, the Jinni will guide you.</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-2">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
-                    <a href="domain/selection.php" style="color: darkgray">
-                        <h1>Domain Service</h1>
-                        <hr class="col-lg-offset-4 col-lg-4">
-                        <br>
-                        <!--
-                        <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
-                        </div>
-                        -->
-                        <div class="text-justify col-lg-3">
-                            <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
-                        </div>
-                    </a>
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat; background-size: 100%; padding-top: 30px; min-height: 350px">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 " style="background-color: transparent">
+                        <a href="microsite/selection.php" style="color: darkorange">
+                            <h1>Domain Service</h1>
+                            <hr class="col-lg-12">
+                            <br>
+                            <!--
+                            <div class="col-lg-offset-4 col-lg-1">
+                                <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
+                            </div>
+                            -->
+                            <div class="text-justify col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </div>            
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-3">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
-                    <a href="digimart/selection.php" style="color: darkgray">
-                        <h1>Digital Marketing</h1>
-                        <hr class="col-lg-offset-4 col-lg-4">
-                        <br>
-                        <!--
-                        <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
-                        </div>
-                        -->
-                        <div class="text-justify col-lg-3">
-                            <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat; background-size: 100%; padding-top: 30px; min-height: 350px">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 " style="background-color: transparent">
+                        <a href="microsite/selection.php" style="color: darkorange">
+                            <h1>Digital Marketing</h1>
+                            <hr class="col-lg-12">
+                            <br>
+                            <!--
+                            <div class="col-lg-offset-4 col-lg-1">
+                                <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
+                            </div>
+                            -->
+                            <div class="text-justify col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
                                Improve your search engine ranking with our Digimart service.</p>
-                        </div>
-                    </a>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </div>    
+            
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-4">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
-                    <a href="microsite/selection.php" style="color: darkgray">
-                        <h1>Website Design</h1>
-                        <hr class="col-lg-offset-4 col-lg-4">
-                        <br>
-                        <!--
-                        <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
-                        </div>
-                        -->
-                        <div class="text-justify col-lg-3">
-                            <p>Greedy for more?</p>
-                            <p>Get a customized professional web-site designed by our experts.</p>
-                        </div>
-                    </a>
+            <div class="col-xs-12 col-lg-6 col-lg-offset-3" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat; background-size: 100%; padding-top: 30px; min-height: 350px">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 " style="background-color: transparent">
+                        <a href="microsite/selection.php" style="color: darkorange">
+                            <h1>Website Design</h1>
+                            <hr class="col-lg-12">
+                            <br>
+                            <!--
+                            <div class="col-lg-offset-4 col-lg-1">
+                                <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
+                            </div>
+                            -->
+                            <div class="text-justify col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                <p>Greedy for more?</p>
+                                <p>Get a customized professional web-site designed by our experts.</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </div>                
         </div>        
     </section>
     <!-- Footer -->
