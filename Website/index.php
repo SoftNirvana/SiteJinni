@@ -24,6 +24,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="shortcut icon" href="Images/favicon.ico" />
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -142,28 +143,28 @@ and open the template in the editor.
             <div class="row text-center">
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-1', 'servicedetails');">
                     <span style="height: 180px; width: 180px">
-                        <img src="Images/site-jini-icon-1.jpg" style="height: 180px; width: 180px"/>
+                        <img src="Images/a.png" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Free Microsite</h4>
                     <p class="text-muted">Setup your free website</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-2', 'servicedetails');">
                     <span style="height: 180px; width: 180px">
-                        <img src="Images/site-jini-icon-2.jpg" style="height: 180px; width: 180px"/>
+                        <img src="Images/b.png" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Domain</h4>
                     <p class="text-muted">Get a customized domain</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-3', 'servicedetails');">
                     <span  style="height: 180px; width: 180px">
-                        <img src="Images/site-jini-icon-3.jpg" style="height: 180px; width: 180px"/>
+                        <img src="Images/c.png" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Digimart</h4>
                     <p class="text-muted">Increase the share of visitors to your site</p>
                 </div>
                 <div class="col-md-3" onclick="javascript: resetActive(event, 0, 'step-4', 'servicedetails');">
                     <span style="height: 180px; width: 180px">
-                        <img src="Images/site-jini-icon-3.jpg" style="height: 180px; width: 180px"/>
+                        <img src="Images/d.png" style="height: 180px; width: 180px"/>
                     </span>
                     <h4 class="service-heading">Website Design</h4>
                     <p class="text-muted">Get a customized website designed with functionalities and all</p>
@@ -174,14 +175,16 @@ and open the template in the editor.
     <section id="servicedetails">
         <div class="row setup-content step activeStepInfo" id="step-1">
             <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
+                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
                     <a href="microsite/selection.php" style="color: darkgray">
                         <h1>Free Microsite</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
+                        <!--
                         <div class="col-lg-offset-4 col-lg-1">
                             <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
                         </div>
+                        -->
                         <div class="text-justify col-lg-3">
                             <p>Get a professional web-site just in 5 minutes. Don’t know how to? </p>
                             <p>No worries, the Jinni will guide you.</p>
@@ -192,14 +195,16 @@ and open the template in the editor.
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-2">
             <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
+                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
                     <a href="domain/selection.php" style="color: darkgray">
                         <h1>Domain Service</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
+                        <!--
                         <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-2.jpg" style="height: 100%; width: 100%"/>
+                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
                         </div>
+                        -->
                         <div class="text-justify col-lg-3">
                             <p>Buy a web-site name for yourself and unlock 3 premium designs.</p>
                         </div>
@@ -209,14 +214,16 @@ and open the template in the editor.
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-3">
             <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
+                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
                     <a href="digimart/selection.php" style="color: darkgray">
                         <h1>Digital Marketing</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
+                        <!--
                         <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-3.jpg" style="height: 100%; width: 100%"/>
+                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
                         </div>
+                        -->
                         <div class="text-justify col-lg-3">
                             <p>Go global with your web-site. Make it visible on search engines, social network, and other web-sites. 
                                Improve your search engine ranking with our Digimart service.</p>
@@ -227,14 +234,16 @@ and open the template in the editor.
         </div>
         <div class="row setup-content step hiddenStepInfo" id="step-4">
             <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
+                <div class="col-md-12 well text-center" style="background-image: url('Images/footer_a.png'); background-repeat: no-repeat">
                     <a href="microsite/selection.php" style="color: darkgray">
                         <h1>Website Design</h1>
                         <hr class="col-lg-offset-4 col-lg-4">
                         <br>
+                        <!--
                         <div class="col-lg-offset-4 col-lg-1">
-                            <img src="Images/site-jini-icon-4.jpg" style="height: 100%; width: 100%"/>
+                            <img src="Images/site-jini-icon-1.jpg" style="height: 100%; width: 100%"/>
                         </div>
+                        -->
                         <div class="text-justify col-lg-3">
                             <p>Greedy for more?</p>
                             <p>Get a customized professional web-site designed by our experts.</p>
