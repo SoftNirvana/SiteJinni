@@ -2,8 +2,14 @@
     include '../Classes/DataAccess.php';
     include '../Classes/Entities/EntityBase.php';
     include '../Classes/Entities/User.php';
-    include '../Classes/Entities/Client.php';      
+    include '../Classes/Entities/Client.php';
     include '../Classes/Entities/Service.php';
+    include '../Classes/Entities/ServiceType.php';
+    include '../Classes/Entities/Cart.php';
+    include '../Classes/Entities/CartItem.php';
+    include '../Classes/Entities/BillItem.php';
+    include '../Classes/PageDesignData.php';
+    include '../Classes/FunctionClasses/CartFunctionsClass.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
     
@@ -163,106 +169,13 @@ and open the template in the editor.
     </head>
     <body>
         
+        <!-- Navigation -->
         <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-            <div class="container topnav">
+            <div class="container topnav" style="margin-top: 0px">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <?php
-                    if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))
-                    {
-                        echo '<div class="navbar-header">                
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand topnav" href="loginPage.php">Login</a>
-                            </div>';
-                    }
+                <?php 
+                    include("../htmlassets/sitejinniNavBar.php");
                 ?>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#about">About</a>
-                        </li>
-                        <li>
-                            <a href="#services">Services</a>
-                        </li>
-                        <li>
-                            <a href="#contact">Contact</a>
-                        </li>
-                        <?php
-                            $userid = "";
-                            $userpasswd = "";
-                            $usermail = "";
-                            $userfirstname = "";
-                            $userlastname = "";
-                            $userbilladdressl1 = "";
-                            $userbilladdressl2 = "";
-                            $usercity = "";
-                            $userzipcode = "";
-                            $userstate = "";
-                            $usercountry = "";
-                            $userphone1 = "";
-                            $ismailverified = "";
-                            $isphoneverified = "";
-                            $useruniqueidtype = "";
-                            $useruniqueid = "";
-                            if(session_status() == PHP_SESSION_ACTIVE &&  isset($_SESSION["user"]) &&  $_SESSION["user"] != NULL)
-                            {
-                                $user = $_SESSION["user"];
-                                $userid = $user->userid;
-                                $userpasswd = $user->userpasswd;
-                                $usermail = $user->usermail;
-                                $userfirstname = $user->userfirstname;
-                                $userlastname = $user->userlastname;
-                                $userbilladdressl1 = $user->userbilladdressl1;
-                                $userbilladdressl2 = $user->userbilladdressl2;
-                                $usercity = $user->usercity;
-                                $userzipcode = $user->userzipcode;
-                                $userstate = $user->userstate;
-                                $usercountry = $user->usercountry;
-                                $userphone1 = $user->userphone1;
-                                $ismailverified = $user->ismailverified;
-                                $isphoneverified = $user->isphoneverified;
-                                $useruniqueidtype = $user->useruniqueidtype;
-                                $useruniqueid = $user->useruniqueid;
-                                echo '<ul class="nav navbar-nav navbar-right">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            <span class="glyphicon glyphicon-user"></span> 
-                                            <strong>'.$user->userid.'</strong>
-                                            <span class="glyphicon glyphicon-chevron-down"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" style="width: 400px">
-                                            <li>
-                                                <div class="navbar-login">
-                                                    <div class="row">
-                                                        <div class="col-lg-2" style="margin: 5px">
-                                                            <p class="text-center">
-                                                                <span class="glyphicon glyphicon-user icon-size"></span>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-lg-8" style="margin: 5px">
-                                                            <form class="form-inline" method="POST" action="../index.php">
-                                                                <p class="text-left"><strong>'.$user->userfirstname.' '.$user->userlastname.'</strong></p>
-                                                                <p class="text-left small">'.$user->usermail.'</p>
-                                                                <p class="text-left">
-                                                                    <input type="submit" name="logout" value="Log Out" class="btn btn-primary btn-block btn-sm"/>
-                                                                </p>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>                                
-                                        </ul>
-                                    </li>
-                                </ul>';
-                            }
-                        ?>
-                    </ul>
-                </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
