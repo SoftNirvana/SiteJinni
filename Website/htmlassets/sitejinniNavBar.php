@@ -51,7 +51,7 @@ and open the template in the editor.
         <div class="collapse navbar-collapse" id="navdiv">
             
             <ul class="nav navbar-nav navbar-left">
-                <LI><img src="../Images/site_jinni_logo.PNG" style="height: 100%; max-width: 100px"/></LI>
+                <LI><img src="../Images/site_jinni_logo.PNG" style="height: 100%; max-width: 100px; -webkit-filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.4))"/></LI>
                 <LI><a href="sitejinni.com">Home</a></LI>
                 <li><a href="microsite/selection.php">Microsite</a>
                 <LI><a href="#contact">Contact Info</a></LI>
