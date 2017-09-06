@@ -70,7 +70,7 @@ and open the template in the editor.
                 } else {
                     echo '<ul class="nav navbar-nav navbar-right">' .
                             '<li id="cartdiv">' .
-                                '<a class="navbar-brand topnav" href="loginPage.php">Login</a>' .
+                                '<a class="navbar-brand topnav" href="/loginPage.php">Login</a>' .
                             '</li>' .
                          '</ul>';
                 }

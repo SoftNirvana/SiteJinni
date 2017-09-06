@@ -183,17 +183,15 @@ and open the template in the editor.
         
         <!-- Header -->
         <a name="about"></a>
-        <header>
-            <div class="banner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <h1 style="color: crimson; font-weight: bolder">Microsite Service</h1>
-                            <h3 style="color: crimson; font-weight: bolder">Do it yourself marketing microsite kit</h3>
-                        </div>
+        <header class="banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center" style="-webkit-filter: drop-shadow(1px 2px 2px rgba(0,0,0,0.7))">
+                        <h1 style="color: darkorange; font-weight: bolder">Microsite Service</h1>
+                        <h3 style="color: darkorange; font-weight: bolder">Do it yourself marketing microsite kit</h3>
                     </div>
-
                 </div>
+
             </div>
         <!-- /.container -->
         </header>
