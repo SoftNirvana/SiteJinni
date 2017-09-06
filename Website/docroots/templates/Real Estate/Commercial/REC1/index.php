@@ -152,24 +152,8 @@
     <DIV>
         
         <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-            <div class="container topnav container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <?php
-                    if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))
-                    {
-                        echo '<div class="navbar-header">                
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navdiv">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand topnav" href="loginPage.php">Login</a>
-                            </div>';
-                        
-                         
-                    }
-                ?>
+            <div class="topnav container-fluid">
+              
                 <!--<DIV id="sitejinninavbar"></DIV>-->
                <?php 
                     if(($isedit==true)&&($IsOpenFromSite==true)){

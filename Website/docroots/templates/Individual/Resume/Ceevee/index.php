@@ -59,6 +59,7 @@
 	<!-- CSS
     ================================================== -->
    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+   
    <link rel="stylesheet" href="css/default.css">
    <link rel="stylesheet" href="css/layout.css">
    <link rel="stylesheet" href="css/media-queries.css">
@@ -67,8 +68,10 @@
    <link href="css/reccustom.css" rel="stylesheet" />
    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>    
-   <script src="js/recCustom.js"></script>
-   <script src="js/textEditor.js"></script>
+  
+     <?php 
+         echo '<script src="/js/sitejinnijs.js"></script> ';
+     ?>
    <!-- Script
    ================================================== -->
 	<script src="js/modernizr.js"></script>
@@ -76,7 +79,9 @@
    <!-- Favicons
 	================================================== -->
     <link rel="shortcut icon" href="favicon.png" >
-   
+    
+    <script src="js/textEditor.js"></script>
+    <script src="js/spwCustom.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -87,20 +92,21 @@
    <!-- Header
    ================================================== -->
    
-                
+          <?php 
+             if(($isedit==true)&&($IsOpenFromSite==true)){
+                 
+                 echo '<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">'
+                       .'<div class="container topnav container-fluid">';
+                  include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                  echo ' </div></nav>';
+             }
+
+        ?>      
                
    <header id="home">
   
       <nav id="nav-wrap">
-        <?php 
-             
-            if(($isedit==true)&&($IsOpenFromSite==true)){
-             
-                 include( $locpath . "/htmlassets/sitejinniNavBar.php");
-              
-            }
-
-        ?>
+       
      <!----- Install button for Template ---------->
        
         <?php 
@@ -791,7 +797,7 @@
    <!-- footer
    ================================================== -->
    <footer>
-
+<!--
       <div class="row">
 
          <div class="twelve columns">
@@ -805,10 +811,10 @@
                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                <li><a href="#"><i class="fa fa-skype"></i></a></li>
             </ul>
-
+-->
             <ul class="copyright">
-               <li>&copy; Copyright 2014 CeeVee</li>
-               <li>Design by <a title="Styleshout" href="http://www.styleshout.com/">Styleshout</a></li>   
+               <li>&copy; Copyright 2017 </li>
+               <li>Design by <a title="Styleshout" href="http://www.sitejinni.com/">SiteJinni</a></li>   
             </ul>
 
          </div>
@@ -830,7 +836,9 @@
    <script src="js/jquery.fittext.js"></script>
    <script src="js/magnific-popup.js"></script>
    <script src="js/init.js"></script>
-   <script src="js/bootstrap.min.js" type="text/javascript"></script>
+   
+  <script src="js/jquery.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
  
  <script src="ckeditor/adapters/jquery.js"></script>
  <script src="ckeditor/jquery.js"></script>

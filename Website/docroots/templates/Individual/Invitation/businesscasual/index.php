@@ -497,7 +497,7 @@
     <DIV>
         
         <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-            <div class="container topnav container-fluid">
+            <div class=" topnav container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <?php
                     if((!isset($_SESSION["user"]) || $_SESSION["user"]==NULL))

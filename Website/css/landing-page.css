@@ -60,7 +60,7 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background-color: darkgray;
+    background-color: transparent;
     z-index: -1;
     opacity: 1;
 }
@@ -142,7 +142,7 @@ h6 {
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
-    background: url(../Images/online-marketing-1246457_1920.jpg) no-repeat center center; 
+    background: url(../Images/banner-bg.png) no-repeat center center; 
     background-size: cover;
     z-index: -1;
     opacity: .5;

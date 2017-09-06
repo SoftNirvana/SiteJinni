@@ -39,9 +39,16 @@ class DataAccess {
         //Dev Bishwaroop1
         //$servername = "localhost";
         //$username = "root";
-        //$password = "";
-        //$port = "3306";
-        //$dbname = "cmsdbmain";
+        //$password = "170681";
+        //$port = "8889";
+        //$dbname = "CMSDBMAIN";
+
+        //Dev Bishwaroop1
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $port = "3306";
+        $dbname = "cmsdbmain";
         
         //Dev Vikas
         $servername = "localhost";
