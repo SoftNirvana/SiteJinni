@@ -24,6 +24,7 @@ def extractdata(datadict):
 
 
 path = "/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/docroots/userdocroots"
+#dummypath = "/Projects/Applications/MAMP/htdocs/SiteJinniRepo/SiteJinni/Website/docroots/userdocroots"
 searchdata = "-";
 for filename in os.listdir(path):
     searchdata = "-"
