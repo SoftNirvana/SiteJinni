@@ -51,7 +51,7 @@
    // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-   // $isedit=true;
+   $isedit=true;
  //  $IsOpenFromSite=true;
    /// var_dump($isedit);
 ?>
@@ -127,7 +127,7 @@
             if($IsOpenFromSite==FALSE)
             {
                echo '<div class="row"  style="z-index: 3">
-                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         <div style="position: fixed;top: 0;z-index: 1; width: 45%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
                          </div>
                          <div class="row">
 
@@ -366,7 +366,11 @@
                         foreach ($pageDesign->allParts['Skills']->Skills as $key => $skill) {
                             echo '<li>
                                     <em>
-                                    <div id="Skills_Skills_'.$cnt.'_SkillName" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillName'} . '</div> 
+                                        <div class="row">
+                                            <div id="Skills_Skills_'.$cnt.'_SkillName" class=" col-lg-10 brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillName'} . '</div> 
+                                            <!--<div id="Skills_Skills_'.$cnt.'_SkillExpInPercent" class="col-lg-2 brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillExpInPercent'} . '</div>-->
+                                            <div class="col-lg-2"> <input id="Skills_Skills_'.$cnt.'_SkillExpInPercent" class="brand" width="20%" type="text" name="LastName" value="'. $skill->{'SkillExpInPercent'} .'"></div>    
+                                        </div>
                                    </em><br>
                                    <span class="bar-expand allSkill" style="width:' . $skill->{'SkillExpInPercent'} .'%"></span>
                                 </li>';
