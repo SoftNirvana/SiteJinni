@@ -22,7 +22,7 @@
     include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
-
+    /*
     if(!isset($_SESSION["user"])) {
         
         try {
@@ -35,7 +35,7 @@
 
         
     }
-    
+    */
     $user = NULL;
     $client = NULL;
     $service = NULL;
@@ -51,7 +51,7 @@
    // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-   $isedit=true;
+   //$isedit=true;
  //  $IsOpenFromSite=true;
    /// var_dump($isedit);
 ?>

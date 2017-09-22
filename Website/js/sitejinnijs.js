@@ -70,3 +70,6 @@
             }
         });
     }
+    function goToLogin() {
+     window.location = "http://localhost:8080/loginPage.php?u=" + document.URL;
+    }
