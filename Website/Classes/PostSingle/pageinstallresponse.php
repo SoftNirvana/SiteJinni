@@ -108,9 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $clientdocrootpath = $clientdirpath . "/docroot/index.php";
             
             echo $clientdocrootpath;
-        }
-        
-        if(isset($_POST["gendemophrase"])) {
+        } elseif(isset($_POST["gendemophrase"])) {
             echo FunctionsClass::getDemoCode();
         }
     }
