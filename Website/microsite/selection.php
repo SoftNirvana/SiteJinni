@@ -147,7 +147,7 @@ and open the template in the editor.
                     cache: false,
                     data: {gendemophrase: page},
                     success: function (response, textStatus, jqXHR) {
-                        
+                        alert(page + "?" + response);
                         var key = makeid();
                         //var div = document.getElementById("previewFrame");
                         

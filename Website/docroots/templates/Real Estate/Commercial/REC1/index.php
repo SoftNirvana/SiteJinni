@@ -645,7 +645,11 @@
                 <DIV class="container">
                     <DIV class="row">
                         <DIV class="col-lg-12 text-center">
-                            <P> <a href="http://www.sitejinni.com" target="_blank" >www.sitejinni.com</a>  <br><SPAN>Copyright © <?php echo $pageDesign->allParts['Header']->{'CompanyName'}; ?> 2017</SPAN></P>
+                            <ul class="copyright">
+                                <li>&copy; Copyright 2017 </li>
+                                <li>Design by <a title="Styleshout" href="http://www.sitejinni.com/">SiteJinni</a></li> 
+                                <li><a onclick="goToLogin()">Login for Edit</a></li>
+                             </ul>
                         </DIV>
                     </DIV>
                 </DIV>

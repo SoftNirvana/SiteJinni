@@ -22,7 +22,7 @@
     include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
-
+    /*
     if(!isset($_SESSION["user"])) {
         
         try {
@@ -31,11 +31,9 @@
             header("Location: /loginPage.php");
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
-        }
-
-        
+        }        
     }
-    
+    */
     $user = NULL;
     $client = NULL;
     $service = NULL;
@@ -423,21 +421,21 @@
 
                <!-- form -->
                <form action="" method="post" id="contactForm" name="contactForm">
-					<fieldset>
+                <fieldset>
 
                   <div>
-						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactName" name="contactName">
+                    <label for="contactName">Name <span class="required">*</span></label>
+                    <input type="text" value="" size="35" id="contactName" name="contactName">
                   </div>
 
                   <div>
-						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+                    <label for="contactEmail">Email <span class="required">*</span></label>
+                    <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
                   </div>
 
                   <div>
-						   <label for="contactSubject">Subject</label>
-						   <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
                   </div>
 
                   <div>
@@ -458,9 +456,9 @@
                <!-- contact-warning -->
                <div id="message-warning"> Error boy</div>
                <!-- contact-success -->
-				   <div id="message-success">
+                <div id="message-success">
                   <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-				   </div>
+                </div>
 
             </div>
 
@@ -536,7 +534,7 @@
                <li><a onclick="goToLogin()">Login for Edit</a></li>
             </ul>
 
-         </div>
+         <!--</div>-->
 
          <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
 
@@ -563,10 +561,10 @@
  <script src="ckeditor/jquery.js"></script>
  <script src="ckeditor/ckeditor.js"></script>
  <script>
-                CKEDITOR.replace('description_editor');
-            </script>
+    CKEDITOR.replace('description_editor');
+ </script>
   <script type="text/javascript">
-              CreateEditor();
+    CreateEditor();
  </script>
 </body>
 
