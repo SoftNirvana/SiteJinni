@@ -165,7 +165,9 @@
                     if(isset($_GET['u']))
                     {
                         $str = $_GET['u'];
-                        $clnt = Client::GetClientbyURL($str);
+                        $sections = parse_url($str);
+                        var_dump($sections);
+                        $clnt = Client::GetClientbyURL($sections["host"]);
                         $finalurl = "/docroots/userdocroots/" + $clnt->clientname + "/docroot/index.php";
                         $_SESSION["destpage"] = $str;
                     }

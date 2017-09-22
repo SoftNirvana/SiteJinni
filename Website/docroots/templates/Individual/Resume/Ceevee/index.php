@@ -49,7 +49,7 @@
    // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-   $isedit=true;
+   //$isedit=true;
  //  $IsOpenFromSite=true;
    /// var_dump($isedit);
 ?>

@@ -141,13 +141,14 @@ and open the template in the editor.
                 return text;
             }
             function fillPagePreview(page) {       
+              //  alert(page);
                 $.ajax({
                     type: "POST",
                     url: "../Classes/PostSingle/pageinstallresponse.php",
                     cache: false,
                     data: {gendemophrase: page},
                     success: function (response, textStatus, jqXHR) {
-                        alert(page + "?" + response);
+                      //  alert(response);
                         var key = makeid();
                         //var div = document.getElementById("previewFrame");
                         
