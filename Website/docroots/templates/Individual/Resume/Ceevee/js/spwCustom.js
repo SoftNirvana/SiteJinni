@@ -21,3 +21,7 @@ function installPage() {
          }
      });
  }
+ 
+ function goToLogin() {
+     window.location = "https://www.sitejinni.com/loginPage.php?u=" + document.URL;
+ }

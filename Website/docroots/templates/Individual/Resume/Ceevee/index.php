@@ -533,7 +533,7 @@
             <ul class="copyright">
                <li>&copy; Copyright 2017 </li>
                <li>Design by <a title="Styleshout" href="http://www.sitejinni.com/">SiteJinni</a></li> 
-               <li>Login for Edit</li>
+               <li><a onclick="goToLogin()">Login for Edit</a></li>
             </ul>
 
          </div>
