@@ -82,6 +82,7 @@
         <META name="author" content="">
         <TITLE>            
         </TITLE>
+        <link rel="shortcut icon" href="Images/favicon.ico" />
 
         <META name="GENERATOR" content="WDL-Website-Builder">
         

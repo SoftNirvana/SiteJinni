@@ -34,6 +34,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Logout</title>
+        <link rel="shortcut icon" href="/Images/favicon.ico" />
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
         <link href="/vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

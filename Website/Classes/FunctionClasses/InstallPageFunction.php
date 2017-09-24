@@ -11,6 +11,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="shortcut icon" href="/Images/favicon.ico" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="/vendor/twbs/bootstrap/dist/js/jquery.js"></script>
         <script type="text/javascript">

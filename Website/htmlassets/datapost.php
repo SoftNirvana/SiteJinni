@@ -135,16 +135,18 @@
     
     //----- Eduction data conversion------------------------------
     // $edu_key $edu_value $edu_key_Temp $edu_value_Temp $edu_key_Temp4 $edu_value_Temp4
-    foreach ($json_a["allParts"]["Educations"] as $edu_key => $edu_value) {
-        $edus_temp = array();
-        foreach ($edu_value as $edu_key_Temp => $edu_value_Temp) {
-        $edu_temp = new PageDesignEducation("Education");
-        foreach($edu_value_Temp as $edu_key_Temp4 => $edu_value_Temp4) {
-        $edu_temp->{$edu_key_Temp4} = $edu_value_Temp4;
+    if($json_a["allParts"]["Educations"] != NULL && count($json_a["allParts"]["Educations"])>0) {
+        foreach ($json_a["allParts"]["Educations"] as $edu_key => $edu_value) {
+            $edus_temp = array();
+            foreach ($edu_value as $edu_key_Temp => $edu_value_Temp) {
+            $edu_temp = new PageDesignEducation("Education");
+            foreach($edu_value_Temp as $edu_key_Temp4 => $edu_value_Temp4) {
+            $edu_temp->{$edu_key_Temp4} = $edu_value_Temp4;
+            }
+            array_push($edus_temp,$edu_temp);
+            }
+            $objEducations->{$edu_key} = $edus_temp;
         }
-        array_push($edus_temp,$edu_temp);
-        }
-        $objEducations->{$edu_key} = $edus_temp;
     }
      // -- WorkExperience object
     $objWorkExperiences=new PageDesignWorkExperiences("WorkExperiences");

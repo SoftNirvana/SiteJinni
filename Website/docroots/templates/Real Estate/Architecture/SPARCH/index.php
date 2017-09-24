@@ -582,8 +582,8 @@
 </HEAD>
 <BODY>
     <?php
-        include($locpath . 'htmlassets/datapost.php');
-        include($locpath . 'htmlassets/visitortoclientdatapost.php');
+        include($locpath . '/htmlassets/datapost.php');
+        include($locpath . '/htmlassets/visitortoclientdatapost.php');
     ?>
         
         <?php 

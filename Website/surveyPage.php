@@ -73,6 +73,7 @@
     <TITLE>
         Sitejinni Survey
     </TITLE>
+    <link rel="shortcut icon" href="Images/favicon.ico" />
 	
     <META name="GENERATOR" content="WDL-Website-Builder">     <!-- Bootstrap Core CSS -->
     <LINK href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">     <!-- Custom CSS -->

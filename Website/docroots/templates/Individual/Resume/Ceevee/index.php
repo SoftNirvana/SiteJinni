@@ -86,7 +86,7 @@
 
 <body>
      <?php
-        include($locpath . 'htmlassets/datapost.php');
+        include($locpath . '/htmlassets/datapost.php');
     ?>
      
    <!-- Header
