@@ -21,9 +21,10 @@ include '../Entities/CartItem.php';
 if(session_status()!=PHP_SESSION_ACTIVE) session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {        
-        
+
         if(isset($_POST["installpage"])) {
             if(!isset($_SESSION["client"])) { 
+          
                 $installpage = $_POST["installpage"];
                 $sections = parse_url($installpage);
                 $_SESSION["installpage"] = rawurldecode($sections['path']);
@@ -108,9 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $clientdocrootpath = $clientdirpath . "/docroot/index.php";
             
             echo $clientdocrootpath;
-        }
-        
-        if(isset($_POST["gendemophrase"])) {
+        } elseif(isset($_POST["gendemophrase"])) {
             echo FunctionsClass::getDemoCode();
         }
     }

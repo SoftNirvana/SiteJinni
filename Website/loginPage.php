@@ -1,5 +1,6 @@
 <?php
     if(session_status()!=PHP_SESSION_ACTIVE) session_start();
+    
     require 'vendor/facebook/graph-sdk/src/Facebook/autoload.php';
 
 
@@ -159,8 +160,20 @@
             include './Classes/DataAccess.php';
             include './Classes/Entities/EntityBase.php';
             include './Classes/Entities/User.php';
+            include './Classes/Entities/Client.php';
             try {
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $desturl = NULL;
+                    if(isset($_GET['u']))
+                    {
+                        $str = $_GET['u'];
+                        $sections = parse_url($str);
+                        var_dump($sections);
+                        $clnt = Client::GetClientbyURL($sections["host"]);
+                        $finalurl = "/docroots/userdocroots/" + $clnt->clientname + "/docroot/index.php";
+                        $_SESSION["destpage"] = $str;
+                    }
+                    
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if(isset($_POST["btnSubmitSignup"]))
                     {
                         $userbyid = User::GetUserbyID($_POST["usernamesu"]);

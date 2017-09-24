@@ -22,7 +22,18 @@
     include $locpath . '/Classes/FunctionClasses/CartFunctionsClass.php';
     
     if(session_status()!=PHP_SESSION_ACTIVE) {session_start(); }
-
+    /*
+    if(!isset($_SESSION["user"])) {
+        
+        try {
+            $url = "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";            
+            $_SESSION["destpage"] = $url;
+            header("Location: /loginPage.php");
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }        
+    }
+    */
     $user = NULL;
     $client = NULL;
     $service = NULL;
@@ -34,12 +45,13 @@
     {
         $client = $_SESSION["client"];
     }
-    //$user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
+   // $user = new User("billgates", "", "", "bill", "gates", "", "", "", "", "", "", "", "", "");
    // $client = new Client("cl1", "microsoft", "", "", "", "", "", "", "", "", "microsoft.sitejinni.com", "", "");
     $isedit = ($client != NULL && $user != NULL);
     //testing
-   // $isedit=true;
-   // $IsOpenFromSite=true;
+   //$isedit=true;
+ //  $IsOpenFromSite=true;
+   /// var_dump($isedit);
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="en"> 
@@ -93,12 +105,12 @@
    ================================================== -->
    
           <?php 
-             if(($isedit==true)&&($IsOpenFromSite==true)){
+            if(($isedit==true)&&($IsOpenFromSite==true)){
                  
-                 echo '<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">'
-                       .'<div class="container topnav container-fluid">';
-                  include( $locpath . "/htmlassets/sitejinniNavBar.php");
-                  echo ' </div></nav>';
+                echo '<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">'
+                     .'<div class="container topnav container-fluid">';
+                include( $locpath . "/htmlassets/sitejinniNavBar.php");
+                echo ' </div></nav>';
              }
 
         ?>      
@@ -113,7 +125,7 @@
             if($IsOpenFromSite==FALSE)
             {
                echo '<div class="row"  style="z-index: 3">
-                         <div style="position: fixed;top: 0;z-index: 1; width: 100%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
+                         <div style="position: fixed;top: 0;z-index: 1; width: 45%; height: 60px; background-color: white;opacity:.3; border-bottom:solid ;border-bottom-width:1px;">    
                          </div>
                          <div class="row">
 
@@ -207,7 +219,7 @@
    </section> <!-- About Section End-->
 
 
-   <!-- Resume Section
+   <!-- Resume Section 
    ================================================== -->
    <section id="resume">
 
@@ -216,10 +228,27 @@
       <div class="row education">
 
          <div class="three columns header-col">
-            <h1><span>Education</span></h1>
+             <div class=" col-lg-8 col-md-8 col-xs-8">
+                    <h1><span>Education</span></h1>
+             </div>
+            <?php
+            if($isedit==TRUE)
+            {
+                   echo'<div class="col-lg-4 col-md-4 col-xs-4">
+                        <form action="index.php#feducation" method="post" enctype="multipart/form-data" id="feducation">
+                            <div>
+                                <button type="submit" id="btnAddEdu" name="btnAddEdu" class="btn btn-info btn-sx">
+                                    <span class="fa fa-plus" style="font-weight:bold"> </span> 
+                                </button>
+                            </div>
+                         
+                         </form>
+                    </div>';
+            }
+            ?>
          </div>
 
-         <div class="nine columns main-col">
+         <div class="nine columns main-col  ">
 
              <?php 
              $cnt = 0;
@@ -249,7 +278,23 @@
       <div class="row work">
 
          <div class="three columns header-col">
+             <div class="col-lg-8 col-md-8 col-xs-8">
             <h1><span>Work</span></h1>
+            </div>
+            <?php
+            if($isedit==TRUE)
+            {
+                   echo'<div class="col-lg-4 col-md-4 col-xs-4">
+                        <form action="index.php#fwork" method="post" enctype="multipart/form-data" id="fwork">
+                            <div>
+                                <button type="submit" id="btnAddWork" name="btnAddWork" class="btn btn-info btn-sx">
+                                    <span class="fa fa-plus" style="font-weight:bold"> </span> 
+                                </button>
+                            </div>
+                        </form>
+                    </div>';
+            }
+            ?>
          </div>
 
          <div class="nine columns main-col">
@@ -283,7 +328,23 @@
       <div class="row skill">
 
          <div class="three columns header-col">
+             <div class="col-lg-8 col-md-8 col-xs-8">
             <h1><span>Skills</span></h1>
+            </div>
+              <?php
+            if($isedit==TRUE)
+            {
+                   echo'<div class="col-lg-4 col-md-4 col-xs-4">
+                        <form action="index.php#fskill" method="post" enctype="multipart/form-data" id="fskill">
+                            <div>
+                                <button type="submit" id="btnAddSkill" name="btnAddSkill" class="btn btn-info btn-sx">
+                                    <span class="fa fa-plus" style="font-weight:bold"> </span> 
+                                </button>
+                            </div>
+                        </form>
+                    </div>';
+            }
+            ?>
          </div>
 
         <div class="nine columns main-col">
@@ -301,8 +362,16 @@
                     <?php 
                         $cnt = 0;
                         foreach ($pageDesign->allParts['Skills']->Skills as $key => $skill) {
-                            echo '<li><span class="bar-expand allSkill" style="width:' . $skill->{'SkillExpInPercent'} .';"></span><em>'
-                                 . '<div id="Skills_Skills_'.$cnt.'_SkillName" class="brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillName'} . '</div> </em></li>';
+                            echo '<li>
+                                    <em>
+                                        <div class="row">
+                                            <div id="Skills_Skills_'.$cnt.'_SkillName" class=" col-lg-10 brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillName'} . '</div> 
+                                            <!--<div id="Skills_Skills_'.$cnt.'_SkillExpInPercent" class="col-lg-2 brand ' . (($isedit == TRUE) ? 'texteditor' : ' ') . '" >' . $skill->{'SkillExpInPercent'} . '</div>-->
+                                            <div class="col-lg-2"> <input id="Skills_Skills_'.$cnt.'_SkillExpInPercent" class="brand" width="20%" type="text" name="LastName" value="'. $skill->{'SkillExpInPercent'} .'"></div>    
+                                        </div>
+                                   </em><br>
+                                   <span class="bar-expand allSkill" style="width:' . $skill->{'SkillExpInPercent'} .'%"></span>
+                                </li>';
                             $cnt++;
                         }
                     ?>
@@ -322,360 +391,7 @@
    </section> <!-- Resume Section End-->
 
 
-   <!-- Portfolio Section
-   ================================================== -->
-   <section id="portfolio">
-
-      <div class="row">
-
-         <div class="twelve columns collapsed">
-
-            <h1>Check Out Some of My Works.</h1>
-
-            <!-- portfolio-wrapper -->
-            <div id="portfolio-wrapper" class="bgrid-quarters s-bgrid-thirds cf">
-
-          	   <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-01" title="">
-                        <img alt="" src="images/portfolio/coffee.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Coffee</h5>
-                              <p>Illustrration</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-02" title="">
-                        <img alt="" src="images/portfolio/console.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Console</h5>
-                              <p>Web Development</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-03" title="">
-                        <img alt="" src="images/portfolio/judah.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Judah</h5>
-                              <p>Webdesign</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-04" title="">
-                        <img alt="" src="images/portfolio/into-the-light.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Into The Light</h5>
-                              <p>Photography</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-05" title="">
-                        <img alt="" src="images/portfolio/farmerboy.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Farmer Boy</h5>
-                              <p>Branding</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-06" title="">
-                        <img alt="" src="images/portfolio/girl.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Girl</h5>
-                              <p>Photography</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-07" title="">
-                        <img alt="" src="images/portfolio/origami.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Origami</h5>
-                              <p>Illustrration</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div> <!-- item end -->
-
-               <div class="columns portfolio-item">
-                  <div class="item-wrap">
-
-                     <a href="#modal-08" title="">
-                        <img alt="" src="images/portfolio/retrocam.jpg">
-                        <div class="overlay">
-                           <div class="portfolio-item-meta">
-          					      <h5>Retrocam</h5>
-                              <p>Web Development</p>
-          					   </div>
-                        </div>
-                        <div class="link-icon"><i class="icon-plus"></i></div>
-                     </a>
-
-                  </div>
-          		</div>  <!-- item end -->
-
-            </div> <!-- portfolio-wrapper end -->
-
-         </div> <!-- twelve columns end -->
-
-
-         <!-- Modal Popup
-	      --------------------------------------------------------------- -->
-
-         <div id="modal-01" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-coffee.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Coffee Cup</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Webdesign</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-01 End -->
-
-         <div id="modal-02" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-console.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Console</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Web Development</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-02 End -->
-
-         <div id="modal-03" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-judah.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Judah</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-03 End -->
-
-         <div id="modal-04" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-intothelight.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Into the Light</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Photography</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-04 End -->
-
-         <div id="modal-05" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-farmerboy.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Farmer Boy</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Webdesign</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-05 End -->
-
-         <div id="modal-06" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-girl.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Girl</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Photography</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-06 End -->
-
-         <div id="modal-07" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-origami.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Origami</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Branding, Illustration</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-07 End -->
-
-         <div id="modal-08" class="popup-modal mfp-hide">
-
-		      <img class="scale-with-grid" src="images/portfolio/modals/m-retrocam.jpg" alt="" />
-
-		      <div class="description-box">
-			      <h4>Retrocam</h4>
-			      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-               <span class="categories"><i class="fa fa-tag"></i>Webdesign, Photography</span>
-		      </div>
-
-            <div class="link-box">
-               <a href="http://www.behance.net">Details</a>
-		         <a class="popup-modal-dismiss">Close</a>
-            </div>
-
-	      </div><!-- modal-01 End -->
-
-
-      </div> <!-- row End -->
-
-   </section> <!-- Portfolio Section End-->
-
-
-   <!-- Call-To-Action Section
-   ================================================== -->
-    <!-- Testimonials Section
-   ================================================== -->
-   <section id="testimonials">
-
-      <div class="text-container">
-
-         <div class="row">
-
-            <div class="two columns header-col">
-
-               <h1><span>Client Testimonials</span></h1>
-
-            </div>
-
-            <div class="ten columns flex-container">
-
-               <div class="flexslider">
-
-                  <ul class="slides">
-
-                     <li>
-                        <blockquote>
-                           <p>Your work is going to fill a large part of your life, and the only way to be truly satisfied is
-                           to do what you believe is great work. And the only way to do great work is to love what you do.
-                           If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it.
-                           </p>
-                           <cite>Steve Jobs</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-
-                     <li>
-                        <blockquote>
-                           <p>This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.
-                           Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem
-                           nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.
-                           </p>
-                           <cite>Mr. Adobe</cite>
-                        </blockquote>
-                     </li> <!-- slide ends -->
-
-                  </ul>
-
-               </div> <!-- div.flexslider ends -->
-
-            </div> <!-- div.flex-container ends -->
-
-         </div> <!-- row ends -->
-
-       </div>  <!-- text-container ends -->
-
-   </section> <!-- Testimonials Section End-->
-
-
+  
    <!-- Contact Section
    ================================================== -->
    <section id="contact">
@@ -705,21 +421,21 @@
 
                <!-- form -->
                <form action="" method="post" id="contactForm" name="contactForm">
-					<fieldset>
+                <fieldset>
 
                   <div>
-						   <label for="contactName">Name <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactName" name="contactName">
+                    <label for="contactName">Name <span class="required">*</span></label>
+                    <input type="text" value="" size="35" id="contactName" name="contactName">
                   </div>
 
                   <div>
-						   <label for="contactEmail">Email <span class="required">*</span></label>
-						   <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
+                    <label for="contactEmail">Email <span class="required">*</span></label>
+                    <input type="text" value="" size="35" id="contactEmail" name="contactEmail">
                   </div>
 
                   <div>
-						   <label for="contactSubject">Subject</label>
-						   <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" value="" size="35" id="contactSubject" name="contactSubject">
                   </div>
 
                   <div>
@@ -740,9 +456,9 @@
                <!-- contact-warning -->
                <div id="message-warning"> Error boy</div>
                <!-- contact-success -->
-				   <div id="message-success">
+                <div id="message-success">
                   <i class="fa fa-check"></i>Your message was sent, thank you!<br>
-				   </div>
+                </div>
 
             </div>
 
@@ -814,10 +530,11 @@
 -->
             <ul class="copyright">
                <li>&copy; Copyright 2017 </li>
-               <li>Design by <a title="Styleshout" href="http://www.sitejinni.com/">SiteJinni</a></li>   
+               <li>Design by <a title="Styleshout" href="http://www.sitejinni.com/">SiteJinni</a></li> 
+               <li><a onclick="goToLogin()">Login for Edit</a></li>
             </ul>
 
-         </div>
+         <!--</div>-->
 
          <div id="go-top"><a class="smoothscroll" title="Back to Top" href="#home"><i class="icon-up-open"></i></a></div>
 
@@ -844,10 +561,10 @@
  <script src="ckeditor/jquery.js"></script>
  <script src="ckeditor/ckeditor.js"></script>
  <script>
-                CKEDITOR.replace('description_editor');
-            </script>
+    CKEDITOR.replace('description_editor');
+ </script>
   <script type="text/javascript">
-              CreateEditor();
+    CreateEditor();
  </script>
 </body>
 

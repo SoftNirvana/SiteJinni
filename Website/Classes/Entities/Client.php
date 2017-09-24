@@ -120,6 +120,33 @@ class Client {
         }
 
     }
+    public static function GetClientbyURL($url) {
+        try {
+            $conn = DataAccess::connect();
+            $clnt = null;
+            if($conn != NULL) {
+                $sql = "SELECT clientid, clientname, clientcontactnumber1, clientcontactnumber2, clientaddressline1, " . 
+                       "clientaddressline2, clientaddressline3, clientcity, clientzipcode, clientmailaddress, clientmainURL, " .
+                       "clientnumofservices, userid FROM CLIENT WHERE clientmainURL='".$url."'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                // output data of each row
+                        $row = $result->fetch_assoc();
+
+                        $clnt = new Client($row["clientid"],$row["clientname"],$row["clientcontactnumber1"],$row["clientcontactnumber2"],$row["clientaddressline1"],
+                                        $row["clientaddressline2"],$row["clientaddressline3"],$row["clientcity"],$row["clientzipcode"],$row["clientmailaddress"],$row["clientmainURL"],
+                                        $row["clientnumofservices"], $row["userid"]);
+                }
+            }
+            $conn->close();
+
+            return $clnt;            
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+            return NULL;
+        }
+
+    }
     
     public static function GetAllClients() {
         try {

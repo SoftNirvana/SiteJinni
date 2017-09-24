@@ -37,6 +37,17 @@
     $projects = new PageDesignProjects("Projects");
     $projects->Projects= array();
 
+    // Education data object initialization
+    $Educations=new PageDesignEducations("Educations");
+    $Educations->Educations=array();
+    
+    // Work experience data object initialization
+    $WorkExp=new PageDesignWorkExperiences("WorkExperiences");
+    $WorkExp->WorkExperiences=array();
+    
+    // Skills data object initialization
+    $Skl=new PageDesignSkills("Skils");
+    $Skl->Skills=array();
 
     //---------------------- Array to object conversions ----------------------------
     if($json_a["allParts"]["Header"] != NULL) {
@@ -355,6 +366,46 @@
     $pageDesign->allParts['About']->AboutImagePath = $target_file_path;
     }
     
+    //----------- POST Request - Save Education ----------------------
+      
+    if(isset($_POST['btnAddEdu'])) {
+    
+    $Educations = new PageDesignEducations ("Educations");
+    $Educations->UniversityName = 'University Name (e.g. University Of Pune)';
+    $Educations->Degree = 'Degree Name (e.g. Master In Computer Application)';
+    $Educations->YearOfPassing = 'Year Of Passing (e.g. 2010)';
+    $Educations->Info = 'Write extra information regarding your degree upto 200 character.';
+    $pageDesign->allParts['Educations']->addEducation($Educations);
+    }
+    
+    //----------- POST Request - Save Education ----------------------
+      
+    if(isset($_POST['btnAddWork'])) {
+    
+    $WorkExp = new PageDesignWorkExperiences ("WorkExperiences");
+    $WorkExp->CompanyName = 'Orgnization Name (e.g. IBM)';
+    $WorkExp->Designation = 'Designation Name (e.g. Software Engineer)';
+    $WorkExp->Experience = 'Month - Year  (e.g. May - 2010)';
+    $WorkExp->Description = 'Write extra information regarding your experience upto 200 character.';
+    $pageDesign->allParts['WorkExperiences']->addExperience($WorkExp);
+    }
+    
+    //----------- POST Request - Save Education ----------------------
+      
+    if(isset($_POST['btnAddSkill'])) {
+            
+    $Skl = new PageDesignSkills("Skills");
+    $Skl->SkillName = 'Skill Name (e.g. C#, Photoshop, HTML, Coroldraw.)';
+    $Skl->SkillExpInPercent = 'Give rating to skill (e.g. 40%,50%,...%)';
+    $pageDesign->allParts['Skills']->addSkill($Skl);
+    }
+    
+    
+    
+    
+    
+    
+    
     //----------------Scanning Directory 'mainimages' for loading images -------------------
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['accept'])) {
@@ -379,8 +430,12 @@
     }
     }
     //----------------------------------------------------------------------------------------
-
-     // 27062017 code
+    
+    
+    
+    
+    
+     // EDit post save-- 27062017 code
     if(isset($_POST['moddata']) && isset($_POST['modpath']))  {
         $path = $_POST['modpath'];
         $moddata = $_POST['moddata'];
